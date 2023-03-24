@@ -1,0 +1,8 @@
+.container{
+    display: flex;
+    justify-content: center;
+    background-color: var(--hope-colors-primary5);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
