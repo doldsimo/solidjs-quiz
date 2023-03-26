@@ -7,7 +7,6 @@ import { IoHome } from 'solid-icons/io'
 
 const NavigationButton = (props) => {
     return (
-
         <A class={styles.navLink} href={props.path} activeClass={styles.activeLink}>
             <Switch fallback={<div>Not Found</div>}>
                 <Match when={props.path === "/home"}>
