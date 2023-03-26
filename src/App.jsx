@@ -26,7 +26,6 @@ function App() {
   return (
     <HopeProvider config={config}>
       <QuizProvider>
-
         <Router>
           <DarkModeButton />
           <Heading>My Site with Lots of Pages</Heading>
