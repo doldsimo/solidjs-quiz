@@ -5,6 +5,8 @@ export const QuizContext = createContext();
 export function QuizProvider(props) {
     const [progress, setProgress] = createSignal(0);            // Progress in % from the quiz
     const [questionsSum, setQuestionsSum] = createSignal(0);    // sum of all questions from the quiz
+    const [allowBackjumping, setAllowBackjumping] = createSignal(true);    // set if it is allowed to jump back
+    const [quizStyle, setQuizStyle] = createSignal("true");    // set quizstyle at the moment there are two styles: ("scroll" | "default") 
 
     return <QuizContext.Provider value={{ progress, setProgress, questionsSum, setQuestionsSum }}>
         {props.children}
