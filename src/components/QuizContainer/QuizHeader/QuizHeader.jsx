@@ -7,7 +7,7 @@ import TrueFalseTag from "./QuestionTypeTag/TrueFalseTag/TrueFalseTag";
 import CorrectOrderTag from "./QuestionTypeTag/CorrectOrderTag/CorrectOrderTag";
 import DragAndDropTag from "./QuestionTypeTag/DragAndDropTag/DragAndDropTag";
 import RelationTag from "./QuestionTypeTag/RelationTag/RelationTag";
-import SingleChoiceQuestion from "./QuestionTypeTag/SingleChoiceTag/SingleChoiceQuestion";
+import SingleChoiceTag from "./QuestionTypeTag/SingleChoiceTag/SingleChoiceTag";
 
 
 const QuizHeader = () => {
@@ -19,7 +19,7 @@ const QuizHeader = () => {
 
             <Switch>
                 <Match when={currentQuestion().questionType === "singlechoice"}>
-                    <SingleChoiceQuestion />
+                    <SingleChoiceTag />
                 </Match>
                 <Match when={currentQuestion().questionType === "multiplechoice"}>
                     <MultiplechoiceTag />
