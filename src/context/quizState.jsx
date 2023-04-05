@@ -10,9 +10,9 @@ export function QuizProvider(props) {
     const [quizStyle, setQuizStyle] = createSignal("true");    // set quizstyle at the moment there are two styles: ("scroll" | "default") 
 
 
-    createEffect(() => {
-        console.log("Current Page", currentPage());
-      });
+    // createEffect(() => {
+    //     console.log("Current Page", currentPage());
+    //   });
 
     return <QuizContext.Provider value={{ progress, setProgress, questionsSum, setQuestionsSum, allowBackjumping, setAllowBackjumping, currentPage, setCurrentPage }}>
         {props.children}
