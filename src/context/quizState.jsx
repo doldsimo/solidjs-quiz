@@ -17,7 +17,6 @@ export function QuizProvider(props) {
         console.log(quiz);
         setQuestionsSum(quiz.questions.length);
         setAllowBackjumping(quiz.allowBackjumping);
-        console.log(quiz.questions[0].questionType);
         setCurrentQuestion(quiz.questions[0]);
     }
 
