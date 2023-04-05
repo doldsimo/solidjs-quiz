@@ -3,7 +3,7 @@
     "allowBackjumping": true,
     "questions": [
         {
-            "question": "Solidjs is developed by _____?",
+            "question": "Who invented solidjs?",
             "questionType": "singlechoice",
             "answers": [
               "Ryan Carniato",
