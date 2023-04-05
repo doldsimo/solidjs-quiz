@@ -2,14 +2,13 @@ import { Button, Progress, ProgressIndicator, ProgressLabel } from "@hope-ui/sol
 import { useQuizData } from "../../../../context/quizState";
 
 const ProgressBar = () => {
-  const { progress, setProgress } = useQuizData();
+  const { progress } = useQuizData();
   return (
     <>
-      <Progress size="lg" height="3em" value={progress()} >
+      <Progress size="lg" height="1em" value={progress()} >
         <ProgressIndicator />
         <ProgressLabel />
       </Progress>
-      <Button onClick={() => setProgress(progress() + 5)}>+5</Button>
     </>
   )
 }

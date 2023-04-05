@@ -6,6 +6,7 @@ import { useQuizData } from "../../context/quizState";
 import ProgressBar from "./ProgressContainer/ProgressBar/ProgressBar";
 import QuizStartScreen from "./QuizStartScreen/QuizStartScreen";
 import { FiAlertTriangle } from 'solid-icons/fi'
+import QuizContent from "./QuizContent/QuizContent";
 
 const QuizContainer = () => {
     const { progress } = useQuizData();
@@ -25,7 +26,7 @@ const QuizContainer = () => {
                 </Match>
                 {/* Normal Quiz is starting */}
                 <Match when={progress() > 0}>
-                    <ProgressBar />
+                    <QuizContent />
                 </Match>
             </Switch>
         </div>
