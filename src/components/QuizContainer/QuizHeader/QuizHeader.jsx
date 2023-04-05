@@ -1,12 +1,13 @@
+import { Switch } from "solid-js";
 import { Tag, TagLabel, TagLeftIcon, Text } from "@hope-ui/solid"
 import { useQuizData } from "../../../context/quizState";
-import Multiplechoice from "./QuestionTypeTag/MultiplechoiceTag/MultiplechoiceTag";
-import TrueFalseQuestion from "./QuestionTypeTag/TrueFalseTag/TrueFalseTag";
-import CorrectOrder from "./QuestionTypeTag/CorrectOrderTag/CorrectOrderTag";
-import DragAndDrop from "./QuestionTypeTag/DragAndDropTag/DragAndDropTag";
-import RelatonQuestion from "./QuestionTypeTag/RelationTag/RelationTag";
+
+import MultiplechoiceTag from "./QuestionTypeTag/MultiplechoiceTag/MultiplechoiceTag";
+import TrueFalseTag from "./QuestionTypeTag/TrueFalseTag/TrueFalseTag";
+import CorrectOrderTag from "./QuestionTypeTag/CorrectOrderTag/CorrectOrderTag";
+import DragAndDropTag from "./QuestionTypeTag/DragAndDropTag/DragAndDropTag";
+import RelationTag from "./QuestionTypeTag/RelationTag/RelationTag";
 import SingleChoiceQuestion from "./QuestionTypeTag/SingleChoiceTag/SingleChoiceQuestion";
-import { Switch } from "solid-js";
 
 
 const QuizHeader = () => {
@@ -21,19 +22,19 @@ const QuizHeader = () => {
                     <SingleChoiceQuestion />
                 </Match>
                 <Match when={currentQuestion().questionType === "multiplechoice"}>
-                    <SingleChoiceQuestion />
+                    <MultiplechoiceTag />
                 </Match>
                 <Match when={currentQuestion().questionType === "truefalsequestion"}>
-                    <TrueFalseQuestion />
+                    <TrueFalseTag />
                 </Match>
                 <Match when={currentQuestion().questionType === "correctorder"}>
-                    <CorrectOrder />
+                    <CorrectOrderTag />
                 </Match>
                 <Match when={currentQuestion().questionType === "draganddrop"}>
-                    <CorrectOrder />
+                    <DragAndDropTag />
                 </Match>
                 <Match when={currentQuestion().questionType === "relatonquestion"}>
-                    <RelatonQuestion />
+                    <RelationTag />
                 </Match>
             </Switch>
         </div>
