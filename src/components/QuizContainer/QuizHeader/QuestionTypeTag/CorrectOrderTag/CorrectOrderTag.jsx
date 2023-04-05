@@ -1,7 +1,7 @@
 import { Tag, TagLabel, TagLeftIcon } from '@hope-ui/solid'
 import { RiEditorListOrdered } from 'solid-icons/ri'
 
-const CorrectOrder = () => {
+const CorrectOrderTag = () => {
     return (
         <Tag size="md">
             <TagLeftIcon as={RiEditorListOrdered} />
@@ -10,4 +10,4 @@ const CorrectOrder = () => {
     )
 }
 
-export default CorrectOrder
+export default CorrectOrderTag;

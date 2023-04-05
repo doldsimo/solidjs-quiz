@@ -1,28 +1,41 @@
 import { Tag, TagLabel, TagLeftIcon, Text } from "@hope-ui/solid"
 import { useQuizData } from "../../../context/quizState";
-import Multiplechoice from "./QuestionTypeTag/Multiplechoice/Multiplechoice";
-import TrueFalseQuestion from "./QuestionTypeTag/TrueFalseQuestion/TrueFalseQuestion";
-import CorrectOrder from "./QuestionTypeTag/CorrectOrder/CorrectOrder";
-import DragAndDrop from "./QuestionTypeTag/DragAndDrop/DragAndDrop";
-import RelatonQuestion from "./QuestionTypeTag/RelationQuestion/RelatonQuestion";
-import SingleChoiceQuestion from "./QuestionTypeTag/SingleChoiceQuestion/SingleChoiceQuestion";
+import Multiplechoice from "./QuestionTypeTag/MultiplechoiceTag/MultiplechoiceTag";
+import TrueFalseQuestion from "./QuestionTypeTag/TrueFalseTag/TrueFalseTag";
+import CorrectOrder from "./QuestionTypeTag/CorrectOrderTag/CorrectOrderTag";
+import DragAndDrop from "./QuestionTypeTag/DragAndDropTag/DragAndDropTag";
+import RelatonQuestion from "./QuestionTypeTag/RelationTag/RelationTag";
+import SingleChoiceQuestion from "./QuestionTypeTag/SingleChoiceTag/SingleChoiceQuestion";
+import { Switch } from "solid-js";
 
 
 const QuizHeader = () => {
-    const { currentPage } = useQuizData();
+    const { currentPage, currentQuestion } = useQuizData();
+
     return (
         <div>
-            <Text>#: {currentPage()}</Text>
+            <Text>#{currentPage()}:</Text>
 
-            <div>
-                <Multiplechoice/>
-                <TrueFalseQuestion/>
-                <CorrectOrder/>
-                <DragAndDrop/>
-                <RelatonQuestion/>
-                <SingleChoiceQuestion/>
-               
-            </div>
+            <Switch>
+                <Match when={currentQuestion().questionType === "singlechoice"}>
+                    <SingleChoiceQuestion />
+                </Match>
+                <Match when={currentQuestion().questionType === "multiplechoice"}>
+                    <SingleChoiceQuestion />
+                </Match>
+                <Match when={currentQuestion().questionType === "truefalsequestion"}>
+                    <TrueFalseQuestion />
+                </Match>
+                <Match when={currentQuestion().questionType === "correctorder"}>
+                    <CorrectOrder />
+                </Match>
+                <Match when={currentQuestion().questionType === "draganddrop"}>
+                    <CorrectOrder />
+                </Match>
+                <Match when={currentQuestion().questionType === "relatonquestion"}>
+                    <RelatonQuestion />
+                </Match>
+            </Switch>
         </div>
     )
 }

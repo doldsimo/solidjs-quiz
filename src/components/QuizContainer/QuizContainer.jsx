@@ -9,8 +9,13 @@ import { FiAlertTriangle } from 'solid-icons/fi'
 import QuizContent from "./QuizContent/QuizContent";
 import QuizResults from "./QuizResults/QuizResults";
 
-const QuizContainer = () => {
-    const { currentPage, questionsSum } = useQuizData();
+const QuizContainer = (props) => {
+    const { currentPage, questionsSum, setInitialQuizInfo } = useQuizData();
+
+
+    setInitialQuizInfo(props.quiz);
+
+
     return (
         <div>
             <Switch>

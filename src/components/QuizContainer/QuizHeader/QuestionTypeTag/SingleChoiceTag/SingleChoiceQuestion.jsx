@@ -1,7 +1,7 @@
 import { Tag, TagLabel, TagLeftIcon } from "@hope-ui/solid";
 import { OcDotfill3 } from 'solid-icons/oc'
 
-const SingleChoiceQuestion = () => {
+const SingleChoiceTag = () => {
     return (
         <Tag size="md">
             <TagLeftIcon as={OcDotfill3} />
@@ -10,4 +10,4 @@ const SingleChoiceQuestion = () => {
     )
 }
 
-export default SingleChoiceQuestion;
+export default SingleChoiceTag;

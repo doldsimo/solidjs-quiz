@@ -1,6 +1,6 @@
 import { Tag, TagLabel, TagLeftIcon } from '@hope-ui/solid'
 import { AiOutlineCheck } from 'solid-icons/ai'
-const TrueFalseQuestion = () => {
+const TrueFalseTag = () => {
     return (
         <Tag size="md">
             <TagLeftIcon as={AiOutlineCheck} />
@@ -9,4 +9,4 @@ const TrueFalseQuestion = () => {
     )
 }
 
-export default TrueFalseQuestion
+export default TrueFalseTag;

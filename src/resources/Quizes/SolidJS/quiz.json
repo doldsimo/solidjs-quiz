@@ -1,12 +1,10 @@
 {
     "quizTitle": "SolidJS Quiz",
-    "questionsSum": 2,
-    "allowBackjumping": false,
+    "allowBackjumping": true,
     "questions": [
         {
             "question": "Solidjs is developed by _____?",
-            "questionType": "text",
-            "answerSelectionType": "singlechoice",
+            "questionType": "singlechoice",
             "answers": [
               "Ryan Carniato",
               "Linus Torvalds"
@@ -19,8 +17,7 @@
           },
           {
             "question": "When was the first commit in the Solidjs repostory?",
-            "questionType": "text",
-            "answerSelectionType": "singlechoice",
+            "questionType": "singlechoice",
             "answers": [
               "2020",
               "2016"

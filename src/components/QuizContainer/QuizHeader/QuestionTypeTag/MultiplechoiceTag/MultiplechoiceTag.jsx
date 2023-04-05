@@ -1,7 +1,7 @@
 import { Tag, TagLabel, TagLeftIcon } from '@hope-ui/solid'
 import { FiMoreHorizontal } from 'solid-icons/fi'
 
-const Multiplechoice = () => {
+const MultiplechoiceTag = () => {
     return (
         <Tag size="md">
             <TagLeftIcon as={FiMoreHorizontal} />
@@ -10,4 +10,4 @@ const Multiplechoice = () => {
     )
 }
 
-export default Multiplechoice
+export default MultiplechoiceTag

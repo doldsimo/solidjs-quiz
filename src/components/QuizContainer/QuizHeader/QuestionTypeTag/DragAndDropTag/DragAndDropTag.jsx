@@ -1,7 +1,7 @@
 import { Tag, TagLabel, TagLeftIcon } from '@hope-ui/solid'
 import { AiOutlineDrag } from 'solid-icons/ai'
 
-const DragAndDrop = () => {
+const DragAndDropTag = () => {
     return (
         <Tag size="md">
             <TagLeftIcon as={AiOutlineDrag} />
@@ -10,4 +10,4 @@ const DragAndDrop = () => {
     )
 }
 
-export default DragAndDrop
+export default DragAndDropTag

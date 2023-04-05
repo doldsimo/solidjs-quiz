@@ -4,6 +4,7 @@ import QuizNavigationButton from "../QuizNavigationButton/QuizNavigationButton"
 import { Show } from "solid-js"
 import { useQuizData } from "../../../context/quizState"
 import QuizHeader from "../QuizHeader/QuizHeader"
+import QuizQuestion from "../QuizQuestion/QuizQuestion"
 
 
 const QuizContent = () => {
@@ -14,9 +15,7 @@ const QuizContent = () => {
             <ProgressBar />
             <Container>
                 <QuizHeader />
-                <div>
-                    Content
-                </div>
+                <QuizQuestion/>
                 <div style={{ "display": "flex", "justify-content": "space-between" }}>
                     <Show
                         when={currentPage() > 1 && allowBackjumping()}

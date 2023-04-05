@@ -2,7 +2,7 @@
 import { Tag, TagLabel, TagLeftIcon } from '@hope-ui/solid'
 import { TbRelationOneToOne } from 'solid-icons/tb'
 
-const RelatonQuestion = () => {
+const RelationTag = () => {
     return (
         <Tag size="md">
             <TagLeftIcon as={TbRelationOneToOne} />
@@ -11,4 +11,4 @@ const RelatonQuestion = () => {
     )
 }
 
-export default RelatonQuestion
+export default RelationTag;
