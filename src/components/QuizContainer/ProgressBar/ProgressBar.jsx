@@ -1,11 +1,11 @@
 import { Button, Progress, ProgressIndicator, ProgressLabel } from "@hope-ui/solid"
-import { useQuizData } from "../../../../context/quizState";
+import { useQuizData } from "../../../context/quizState";
 
 const ProgressBar = () => {
-  const { progress } = useQuizData();
+  const { questionsSum, currentPage } = useQuizData();
   return (
     <>
-      <Progress size="lg" height="1em" value={progress()} >
+      <Progress size="lg" height="1em" value={ questionsSum() / currentPage() === 0 ? 1 : currentPage()} max={questionsSum()} >
         <ProgressIndicator />
         <ProgressLabel />
       </Progress>

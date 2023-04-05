@@ -1,28 +1,35 @@
 import { Container } from "@hope-ui/solid"
-import ProgressBar from "../ProgressContainer/ProgressBar/ProgressBar"
-import QuizNavigationButton from "../ProgressContainer/QuizNavigationButton/QuizNavigationButton"
+import ProgressBar from "../ProgressBar/ProgressBar"
+import QuizNavigationButton from "../QuizNavigationButton/QuizNavigationButton"
 import { Show } from "solid-js"
 import { useQuizData } from "../../../context/quizState"
+import QuizHeader from "../QuizHeader/QuizHeader"
 
 
 const QuizContent = () => {
-    const { progress, setProgress, allowBackjumping } = useQuizData();
+    const { progress, questionsSum, allowBackjumping, setCurrentPage, currentPage } = useQuizData();
     return (
         <>
             <br />
             <ProgressBar />
             <Container>
+                <QuizHeader />
                 <div>
                     Content
                 </div>
                 <div style={{ "display": "flex", "justify-content": "space-between" }}>
                     <Show
-                        when={progress() > 1 && allowBackjumping()}
-                        fallback={<div/>}
+                        when={currentPage() > 0 && allowBackjumping()}
+                        fallback={<div />}
                     >
-                        <QuizNavigationButton onClick={() => setProgress(progress() - 5)}>Back</QuizNavigationButton>
+                        <QuizNavigationButton onClick={() => setCurrentPage(currentPage() - 1)}>Back</QuizNavigationButton>
                     </Show>
-                    <QuizNavigationButton onClick={() => setProgress(progress() + 5)}>Next</QuizNavigationButton>
+                    <Show
+                        when={currentPage() === questionsSum()}
+                        fallback={<QuizNavigationButton onClick={() => setCurrentPage(currentPage() + 1)}>Next</QuizNavigationButton>}
+                    >
+                        <QuizNavigationButton color="$success11" onClick={() => setCurrentPage(currentPage() + 1)}>Finish</QuizNavigationButton>
+                    </Show>
                 </div>
             </Container>
         </>
