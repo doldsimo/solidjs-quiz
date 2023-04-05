@@ -1,10 +1,11 @@
 import { Tag, TagLabel, TagLeftIcon, Text } from "@hope-ui/solid"
 import { useQuizData } from "../../../context/quizState";
 import Multiplechoice from "./QuestionTypeTag/Multiplechoice/Multiplechoice";
-import YesNo from "./QuestionTypeTag/YesNo/YesNo";
+import TrueFalseQuestion from "./QuestionTypeTag/TrueFalseQuestion/TrueFalseQuestion";
 import CorrectOrder from "./QuestionTypeTag/CorrectOrder/CorrectOrder";
 import DragAndDrop from "./QuestionTypeTag/DragAndDrop/DragAndDrop";
 import RelatonQuestion from "./QuestionTypeTag/RelationQuestion/RelatonQuestion";
+import SingleChoiceQuestion from "./QuestionTypeTag/SingleChoiceQuestion/SingleChoiceQuestion";
 
 
 const QuizHeader = () => {
@@ -15,10 +16,11 @@ const QuizHeader = () => {
 
             <div>
                 <Multiplechoice/>
-                <YesNo/>
+                <TrueFalseQuestion/>
                 <CorrectOrder/>
                 <DragAndDrop/>
                 <RelatonQuestion/>
+                <SingleChoiceQuestion/>
                
             </div>
         </div>
