@@ -15,7 +15,7 @@ const QuizContainer = () => {
         <div>
             <Switch>
                 {/* Before Quiz is starting */}
-                <Match when={currentPage() === -1}>
+                <Match when={currentPage() === 0}>
                     <QuizStartScreen />
                 </Match>
                 {/* When Error of quiz process is happening (higher than 100, or lower than 0) */}

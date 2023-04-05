@@ -8,7 +8,7 @@ const QuizStartScreen = () => {
     const { setCurrentPage } = useQuizData();
     return (
         <div class={styles.container}>
-            <Button rightIcon={<AiFillPlayCircle />} variant="outline" class={styles.startButton} onClick={() => setCurrentPage(0)}>
+            <Button rightIcon={<AiFillPlayCircle />} variant="outline" class={styles.startButton} onClick={() => setCurrentPage(1)}>
                 Start Quiz
             </Button>
         </div>

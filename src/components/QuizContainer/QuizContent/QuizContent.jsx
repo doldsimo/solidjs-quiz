@@ -19,7 +19,7 @@ const QuizContent = () => {
                 </div>
                 <div style={{ "display": "flex", "justify-content": "space-between" }}>
                     <Show
-                        when={currentPage() > 0 && allowBackjumping()}
+                        when={currentPage() > 1 && allowBackjumping()}
                         fallback={<div />}
                     >
                         <QuizNavigationButton onClick={() => setCurrentPage(currentPage() - 1)}>Back</QuizNavigationButton>

@@ -9,7 +9,7 @@ const QuizResults = () => {
                 QuizResults
             </p>
 
-            <Button onClick={() => setCurrentPage(-1)}>Back to start the Quiz again</Button>
+            <Button onClick={() => setCurrentPage(0)}>Back to start the Quiz again</Button>
 
         </div>
     )
