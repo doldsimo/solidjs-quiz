@@ -4,20 +4,20 @@ import QuizNavigationButton from "../QuizNavigationButton/QuizNavigationButton";
 
 
 const QuizFooter = () => {
-    const { progress, questionsSum, allowBackjumping, setCurrentPage, currentPage } = useQuizData();
+    const { progress, questionsSum, allowBackjumping, setCurrentPage, currentPage, navigateToQuizPage } = useQuizData();
     return (
         <div style={{ "display": "flex", "justify-content": "space-between" }}>
             <Show
                 when={currentPage() > 1 && allowBackjumping()}
                 fallback={<div />}
             >
-                <QuizNavigationButton onClick={() => setCurrentPage(currentPage() - 1)}>Back</QuizNavigationButton>
+                <QuizNavigationButton onClick={() => navigateToQuizPage(currentPage() - 1)}>Back</QuizNavigationButton>
             </Show>
             <Show
                 when={currentPage() === questionsSum()}
-                fallback={<QuizNavigationButton onClick={() => setCurrentPage(currentPage() + 1)}>Next</QuizNavigationButton>}
+                fallback={<QuizNavigationButton onClick={() => navigateToQuizPage(currentPage() + 1)}>Next</QuizNavigationButton>}
             >
-                <QuizNavigationButton color="$success11" onClick={() => setCurrentPage(currentPage() + 1)}>Finish</QuizNavigationButton>
+                <QuizNavigationButton color="$success11" onClick={() => navigateToQuizPage(currentPage() + 1)}>Finish</QuizNavigationButton>
             </Show>
         </div>
     )
