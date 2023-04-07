@@ -28,7 +28,8 @@ function App() {
       <QuizProvider>
         <Router>
           <DarkModeButton />
-          <Heading>My Site with Lots of Pages</Heading>
+          {/* <Heading>My Site with Lots of Pages</Heading> */}
+          <br/>
           <Routes>
             <Route path="/" element={<Navigate href="/home" />} />
             <Route path="/quiz" component={Quiz} />

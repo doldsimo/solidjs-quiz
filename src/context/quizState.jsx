@@ -15,7 +15,7 @@ export function QuizProvider(props) {
 
     // This Method is setting the initial status of the quiz which is given from the imported json file.
     const setInitialQuizInfo = (quiz) => {
-        console.log(quiz);
+        // console.log(quiz);
         setQuiz(quiz);
         setQuestionsSum(quiz.questions.length);
         setAllowBackjumping(quiz.allowBackjumping);
@@ -25,10 +25,10 @@ export function QuizProvider(props) {
 
     const navigateToQuizPage = (pIndex) => {
         setCurrentPage(pIndex);
-        setCurrentQuestion(quiz().questions[pIndex-1]);
+        setCurrentQuestion(quiz().questions[pIndex - 1]);
     }
 
-    return <QuizContext.Provider value={{ progress, setProgress, questionsSum, setQuestionsSum, allowBackjumping, setAllowBackjumping, currentPage, setCurrentPage, setInitialQuizInfo, setCurrentQuestion, currentQuestion, navigateToQuizPage, setQuiz, setAllUserAnswers, allUserAnswers }}>
+    return <QuizContext.Provider value={{ progress, setProgress, questionsSum, setQuestionsSum, allowBackjumping, setAllowBackjumping, currentPage, setCurrentPage, setInitialQuizInfo, setCurrentQuestion, currentQuestion, navigateToQuizPage, quiz, setQuiz, setAllUserAnswers, allUserAnswers }}>
         {props.children}
     </QuizContext.Provider >
 }
