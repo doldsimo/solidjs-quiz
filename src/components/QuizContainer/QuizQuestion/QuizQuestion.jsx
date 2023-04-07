@@ -1,6 +1,7 @@
 import { Switch } from "solid-js"
 import SingleChoice from "./SingleChoice/SingleChoice";
 import { useQuizData } from "../../../context/quizState";
+import MultipleChoice from "./MultipleChoice/MultipleChoice";
 
 const QuizQuestion = () => {
   const { currentQuestion } = useQuizData();
@@ -9,6 +10,9 @@ const QuizQuestion = () => {
       <Switch>
         <Match when={currentQuestion().questionType === "singlechoice"}>
           <SingleChoice />
+        </Match>
+        <Match when={currentQuestion().questionType === "multiplechoice"}>
+          <MultipleChoice />
         </Match>
       </Switch>
     </div>
