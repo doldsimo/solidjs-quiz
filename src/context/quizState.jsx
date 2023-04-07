@@ -6,7 +6,7 @@ export function QuizProvider(props) {
     const [progress, setProgress] = createSignal(0);            // Progress in % from the quiz
     const [questionsSum, setQuestionsSum] = createSignal(10);    // sum of all questions from the quiz
     const [quiz, setQuiz] = createSignal({});    // sum of all questions from the quiz
-    const [currentPage, setCurrentPage] = createSignal(3);    // sum of all questions from the quiz  //0 is for showng start page, 0 is the first Question 1, the seconde usw.
+    const [currentPage, setCurrentPage] = createSignal(0);    // sum of all questions from the quiz  //0 is for showng start page, 0 is the first Question 1, the seconde usw.
     const [currentQuestion, setCurrentQuestion] = createSignal({});    // sum of all questions from the quiz  //-1 is for showng start page, 0 is the first Question 1, the seconde usw.
     const [allowBackjumping, setAllowBackjumping] = createSignal(true);    // set if it is allowed to jump back, true means it is allowed
     const [quizStyle, setQuizStyle] = createSignal("true");    // set quizstyle at the moment there are two styles: ("scroll" | "default") 

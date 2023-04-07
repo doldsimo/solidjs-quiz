@@ -6,11 +6,10 @@ import styles from "./MultipleChoice.module.css";
 const MultipleChoice = () => {
     const { currentQuestion } = useQuizData();
 
-    const [checkedAnswers, setCheckedAnswers] = createSignal(Array.from({length: currentQuestion().answers.length}, i => i = false));
-
-    console.log(checkedAnswers());
+    const [checkedAnswers, setCheckedAnswers] = createSignal(Array.from({ length: currentQuestion().answers.length }, i => i = false));
 
     const setAnswer = (i) => {
+        console.log("clicked");
         let newAnsArray = [...checkedAnswers()];
         newAnsArray[i] = !newAnsArray[i];
         setCheckedAnswers(newAnsArray);
@@ -23,7 +22,7 @@ const MultipleChoice = () => {
                 <Index each={currentQuestion().answers}>
                     {(answer, i) => (
                         <Box class={checkedAnswers()[i] === true ? `${styles.answerBox} ${styles.answerBoxActive}` : styles.answerBox} w="100%" p="$4" borderRadius="$md" onClick={() => setAnswer(i)}>
-                            <Checkbox class={styles.radioButton} checked={checkedAnswers()[i]} ><Text>{answer}</Text></Checkbox>
+                            <Checkbox class={styles.radioButton} checked={checkedAnswers()[i]}><Text>{answer}</Text></Checkbox>
                         </Box>)}
                 </Index>
             </div>
