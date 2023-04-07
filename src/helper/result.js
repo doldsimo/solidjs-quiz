@@ -1,46 +1,52 @@
 export default function getUserResultPoints(userAnswers, quiz) {
     // console.log(userAnswers);
     // console.log(quiz);
-    let resultSum = 0;
+    let result = { resultSum: 0, maxSum: 0 };  // resultSum =Sum of all the points which the user accessed || maxSum = sum of all points which are possible accessable by a user
     for (let i = 0; i < quiz.questions.length; i++) {
-        let result = 0;
+        let tep_result = { temp_resultSum: 0, temp_maxSum: 0 };
         switch (quiz.questions[i].questionType) {
             case "singlechoice":
-                result = checkSingleChoiceQuestion(userAnswers[i], quiz.questions[i].correctAnswer, quiz.questions[i].point);
+                tep_result = checkSingleChoiceQuestion(userAnswers[i], quiz.questions[i].correctAnswer, quiz.questions[i].point);
                 break;
             case "multiplechoice":
-                result = checkMultipleChoiceQuestion(userAnswers[i], quiz.questions[i].correctAnswer, quiz.questions[i].point);
+                tep_result = checkMultipleChoiceQuestion(userAnswers[i], quiz.questions[i].correctAnswer, quiz.questions[i].point);
                 break;
             default:
                 break;
         }
-        resultSum = resultSum + result;
+
+        result.resultSum = result.resultSum + tep_result.temp_resultSum;
+        result.maxSum = result.maxSum + tep_result.temp_maxSum;
     }
-    return resultSum;
+    // Returns Object with points from the user and all possible points inside the quiz
+    return result;
 }
 
 // Helper functions for calculate user points
 
 const checkSingleChoiceQuestion = (userAnswer, quizAnswer, pointsForQuestion) => {
-    let points = 0
+    let result = { temp_resultSum: 0, temp_maxSum: 0 };
     let numberUserAnswer = Number(userAnswer);
     let numberQuizAnswer = Number(quizAnswer);
     let numberPointsForQuestion = Number(pointsForQuestion);
 
     if (numberUserAnswer === numberQuizAnswer) {
-        points = points + numberPointsForQuestion;
+        result.temp_resultSum = result.temp_resultSum + numberPointsForQuestion;
     }
-    return points;
+    result.temp_maxSum = numberPointsForQuestion;
+
+    return result;
 }
 
 const checkMultipleChoiceQuestion = (userAnswer, quizAnswer, pointsForQuestion) => {
-    let points = 0;
+    let result = { temp_resultSum: 0, temp_maxSum: 0 };
     let numberPointsForQuestion = Number(pointsForQuestion);
 
     for (let i = 0; i < userAnswer.length; i++) {
         if (userAnswer[i] === quizAnswer[i]) {
-            points = points + numberPointsForQuestion;
+            result.temp_resultSum = result.temp_resultSum + numberPointsForQuestion;
         }
+        result.temp_maxSum = result.temp_maxSum + numberPointsForQuestion;
     }
-    return points;
+    return result;
 }

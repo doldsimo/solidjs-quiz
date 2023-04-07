@@ -1,0 +1,9 @@
+.achivedPoints {
+    color: var(--hope-colors-danger11);
+    font-size: larger
+}
+
+.allPoints {
+    color: var(--hope-colors-success7);
+    font-size: larger
+}

@@ -1,7 +1,8 @@
-import { Button } from "@hope-ui/solid"
+import { Button, Container, Heading } from "@hope-ui/solid"
 import { useQuizData } from "../../../context/quizState";
 import { createSignal, onMount } from "solid-js";
 import getUserResultPoints from "../../../helper/result";
+import styles from './QuizResults.module.css';
 
 const QuizResults = () => {
     const { setCurrentPage, setCurrentQuestion, setAllUserAnswers, quiz, allUserAnswers } = useQuizData();
@@ -16,25 +17,27 @@ const QuizResults = () => {
 
     onMount(() => {
         const points = getUserResultPoints(allUserAnswers(), quiz());
-        console.log("Points: ", points);
+        console.log("output: ", points);
         setPoints(points);
 
     })
 
 
     return (
-        <div>
+        <Container>
+            <Heading level={1} size="xl">
+                Results
+            </Heading>
+            <br />
             <p>
-                QuizResults
-            </p>
-            <p>
-                Achived Points: 
-                {points()}
+                You have achieved <b class={styles.achivedPoints}>{points().resultSum}</b> out of <b class={styles.allPoints}>{points().maxSum}</b> points.
             </p>
 
-            <Button onClick={() => cleanQuiz()}>Back to start the Quiz again</Button>
+            <Button style={{ "margin": "auto" }}>Result informations</Button>
+            <br />
+            <Button style={{ "margin": "auto" }} onClick={() => cleanQuiz()}>Back to start the Quiz again</Button>
 
-        </div>
+        </Container>
     )
 }
 
