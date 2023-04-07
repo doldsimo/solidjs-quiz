@@ -16,19 +16,6 @@
             "point": "10"
           },
           {
-            "question": "When was the first commit in the Solidjs repostory?",
-            "questionType": "singlechoice",
-            "answers": [
-              "2020",
-              "2016"
-            ],
-            "correctAnswer": "2",
-            "messageForCorrectAnswer": "Correct answer. Good job.",
-            "messageForIncorrectAnswer": "Incorrect answer. Please try again.",
-            "explanation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-            "point": "10"
-          },
-          {
             "question": "What are new JSX components that solidjs has out of the box compared to React?",
             "questionType": "multiplechoice",
             "answers": [
@@ -43,6 +30,20 @@
             "messageForIncorrectAnswer": "Incorrect answer. Please try again.",
             "explanation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             "point": "10"
+          },
+          {
+            "question": "When was the first commit in the Solidjs repostory?",
+            "questionType": "singlechoice",
+            "answers": [
+              "2020",
+              "2016"
+            ],
+            "correctAnswer": "2",
+            "messageForCorrectAnswer": "Correct answer. Good job.",
+            "messageForIncorrectAnswer": "Incorrect answer. Please try again.",
+            "explanation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            "point": "10"
           }
+
     ]
 }

@@ -1,19 +1,32 @@
 import { Box, Checkbox, HStack, Heading, Radio, RadioGroup, Text } from "@hope-ui/solid"
 import { useQuizData } from "../../../../context/quizState";
-import { createSignal } from "solid-js";
+import { createSignal, onCleanup, onMount } from "solid-js";
 import styles from "./MultipleChoice.module.css";
 
 const MultipleChoice = () => {
-    const { currentQuestion } = useQuizData();
+    const { currentQuestion, allUserAnswers, currentPage } = useQuizData();
+    const realPage = currentPage(); // herlping variable for using onMount and onCleanup mehtod with correct page
 
     const [checkedAnswers, setCheckedAnswers] = createSignal(Array.from({ length: currentQuestion().answers.length }, i => i = false));
 
     const setAnswer = (i) => {
-        console.log("clicked");
         let newAnsArray = [...checkedAnswers()];
         newAnsArray[i] = !newAnsArray[i];
         setCheckedAnswers(newAnsArray);
     }
+
+
+    onMount(() => {
+        if (allUserAnswers()[realPage - 1] !== null) {
+            setCheckedAnswers([...allUserAnswers()[realPage - 1]]);
+        }
+    });
+
+    onCleanup(() => {
+        // console.log("cleanup MC");
+        allUserAnswers()[realPage - 1] = checkedAnswers();
+        // console.log("new Answers: ", allUserAnswers());
+    });
 
     return (
         <div>
