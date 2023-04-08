@@ -1,6 +1,6 @@
 import { Show } from "solid-js";
 import { useQuizData } from "../../../context/quizState";
-import QuizNavigationButton from "../QuizNavigationButton/QuizNavigationButton";
+import QuizNavigationButton from "./QuizNavigationButton/QuizNavigationButton";
 
 
 const QuizFooter = () => {

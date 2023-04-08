@@ -4,7 +4,7 @@ import { createSignal, onCleanup, onMount } from "solid-js";
 
 import styles from './SingleChoice.module.css';
 
-const SingleChoice = () => {
+const SingleChoice = (props) => {
     const { currentQuestion, setAllUserAnswers, allUserAnswers, currentPage } = useQuizData();
     const realPage = currentPage(); // herlping variable for using onMount and onCleanup mehtod with correct page
 
@@ -21,9 +21,7 @@ const SingleChoice = () => {
     })
 
     onCleanup(() => {
-        // console.log("cleanup SC");
         allUserAnswers()[realPage - 1] = checkedAnswer();
-        // console.log("new Answers: ", allUserAnswers());
     });
 
     return (
