@@ -12,7 +12,7 @@ const QuizContent = () => {
         <>
             <br />
             <ProgressBar />
-            <Container>
+            <Container maxW="$xl">
                 <QuizHeader />
                 <QuizQuestion />
                 <QuizFooter />

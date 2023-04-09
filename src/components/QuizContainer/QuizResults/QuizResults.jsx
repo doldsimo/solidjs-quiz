@@ -23,7 +23,7 @@ const QuizResults = () => {
 
 
     return (
-        <Container>
+        <Container maxW="$xl">
             <Heading level={1} size="xl">
                 Results
             </Heading>
