@@ -1,12 +1,12 @@
 import { Box, HStack, Heading, Radio, RadioGroup, Text } from "@hope-ui/solid"
 import { useQuizData } from "../../../../context/quizState";
-import { createSignal, onCleanup, onMount } from "solid-js";
+import { createMemo, createSignal, onCleanup, onMount } from "solid-js";
 
 import styles from './SingleChoice.module.css';
 
-const SingleChoice = (props) => {
+const SingleChoice = () => {
     const { currentQuestion, setAllUserAnswers, allUserAnswers, currentPage } = useQuizData();
-    const realPage = currentPage(); // herlping variable for using onMount and onCleanup mehtod with correct page
+    const realPage = currentPage(); // helping variable for using onMount and onCleanup mehtod with correct page
 
     const [checkedAnswer, setCheckedAnswer] = createSignal(null);
 
@@ -15,12 +15,14 @@ const SingleChoice = (props) => {
     }
 
     onMount(() => {
+        console.log("SC mount");
         if (allUserAnswers()[realPage - 1] !== null) {
             setCheckedAnswer(allUserAnswers()[realPage - 1]);
         }
     })
-
+    
     onCleanup(() => {
+        console.log("SC unmount");
         allUserAnswers()[realPage - 1] = checkedAnswer();
     });
 

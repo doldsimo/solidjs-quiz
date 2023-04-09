@@ -1,6 +1,5 @@
 import QuizContainer from "../components/QuizContainer/QuizContainer";
-// import quiz from "../resources/Quizes/00/quiz.json";
-import quiz from "../resources/Quizes/01/quiz.json";
+import quiz from "../resources/Quizes/SolidJS/quiz.json";
 
 function Quiz() {
 
