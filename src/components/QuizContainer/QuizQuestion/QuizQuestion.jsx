@@ -30,10 +30,12 @@ const QuizQuestion = () => {
     <div style={{ "margin-bottom": ".7em" }}>
       <Switch>
         <Match when={currentQuestion().questionType === "singlechoice"}>
-          {helper() && <SingleChoice />}
+          {/* {helper() && <SingleChoice />} */}
+          <SingleChoice />
         </Match>
         <Match when={currentQuestion().questionType === "multiplechoice"}>
-          {helper() && <MultipleChoice />}
+          {/* {helper() && <MultipleChoice />} */}
+         <MultipleChoice />
 
         </Match>
       </Switch>

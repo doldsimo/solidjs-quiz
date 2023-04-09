@@ -23,10 +23,9 @@ export default function getUserResultPoints(userAnswers, quiz) {
 }
 
 // Helper functions for calculate user points
-
 const checkSingleChoiceQuestion = (userAnswer, quizAnswer, pointsForQuestion) => {
     let result = { temp_resultSum: 0, temp_maxSum: 0 };
-    let numberUserAnswer = Number(userAnswer);
+    let numberUserAnswer = userAnswer === null ? -1 : Number(userAnswer);
     let numberQuizAnswer = Number(quizAnswer);
     let numberPointsForQuestion = Number(pointsForQuestion);
 
@@ -34,6 +33,8 @@ const checkSingleChoiceQuestion = (userAnswer, quizAnswer, pointsForQuestion) =>
         result.temp_resultSum = result.temp_resultSum + numberPointsForQuestion;
     }
     result.temp_maxSum = numberPointsForQuestion;
+
+    console.log("results: ", result);
 
     return result;
 }
