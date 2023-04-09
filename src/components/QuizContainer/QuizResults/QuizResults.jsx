@@ -19,7 +19,6 @@ const QuizResults = () => {
         const points = getUserResultPoints(allUserAnswers(), quiz());
         console.log("output: ", points);
         setPoints(points);
-
     })
 
 

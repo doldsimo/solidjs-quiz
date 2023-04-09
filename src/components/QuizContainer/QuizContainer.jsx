@@ -1,11 +1,7 @@
 
-import { Alert, Button } from "@hope-ui/solid";
-import { AiFillPlayCircle } from "solid-icons/ai";
-import { Match, Show, Switch } from "solid-js";
+import { Match, Switch } from "solid-js";
 import { useQuizData } from "../../context/quizState";
-import ProgressBar from "./ProgressBar/ProgressBar";
 import QuizStartScreen from "./QuizStartScreen/QuizStartScreen";
-import { FiAlertTriangle } from 'solid-icons/fi'
 import QuizContent from "./QuizContent/QuizContent";
 import QuizResults from "./QuizResults/QuizResults";
 

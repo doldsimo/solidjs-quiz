@@ -34,8 +34,6 @@ const checkSingleChoiceQuestion = (userAnswer, quizAnswer, pointsForQuestion) =>
     }
     result.temp_maxSum = numberPointsForQuestion;
 
-    console.log("results: ", result);
-
     return result;
 }
 

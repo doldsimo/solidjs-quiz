@@ -1,4 +1,4 @@
-import { Button, Progress, ProgressIndicator, ProgressLabel } from "@hope-ui/solid"
+import { Progress, ProgressIndicator, ProgressLabel } from "@hope-ui/solid"
 import { useQuizData } from "../../../context/quizState";
 
 const ProgressBar = () => {

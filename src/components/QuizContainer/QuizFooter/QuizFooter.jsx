@@ -4,7 +4,7 @@ import QuizNavigationButton from "./QuizNavigationButton/QuizNavigationButton";
 
 
 const QuizFooter = () => {
-    const { progress, questionsSum, allowBackjumping, setCurrentPage, currentPage, navigateToQuizPage } = useQuizData();
+    const { questionsSum, allowBackjumping, currentPage, navigateToQuizPage } = useQuizData();
 
     const navigateToNextPage = () => {
         navigateToQuizPage(currentPage() + 1);

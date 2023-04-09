@@ -1,5 +1,5 @@
 import { Switch } from "solid-js";
-import { Tag, TagLabel, TagLeftIcon, Text } from "@hope-ui/solid"
+import { Text } from "@hope-ui/solid"
 import { useQuizData } from "../../../context/quizState";
 
 import MultiplechoiceTag from "./QuestionTypeTag/MultiplechoiceTag/MultiplechoiceTag";

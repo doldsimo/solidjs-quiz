@@ -1,4 +1,4 @@
-import { Switch, createEffect, createMemo, createSignal } from "solid-js"
+import { Switch, createMemo, createSignal } from "solid-js";
 import SingleChoice from "./SingleChoice/SingleChoice";
 import { useQuizData } from "../../../context/quizState";
 import MultipleChoice from "./MultipleChoice/MultipleChoice";

@@ -1,4 +1,4 @@
-import { Box, Checkbox, HStack, Heading, Radio, RadioGroup, Text } from "@hope-ui/solid"
+import { Box, Checkbox, Heading, Text } from "@hope-ui/solid"
 import { useQuizData } from "../../../../context/quizState";
 import { createSignal, onCleanup, onMount } from "solid-js";
 import styles from "./MultipleChoice.module.css";
