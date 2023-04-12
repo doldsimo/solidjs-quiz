@@ -41,7 +41,7 @@ const QuizResultsAccordion = () => {
                                                 {isMultipleChoiceCorrect(allUserAnswers()[i()], question.correctAnswer) ? <AiFillCheckCircle class={styles.correctAnswer} /> : <AiFillCloseCircle class={styles.wrongAnswer} />}
                                             </Center>
                                             <Text class={isMultipleChoiceCorrect(allUserAnswers()[i()], question.correctAnswer) ? styles.correctAnswer : styles.wrongAnswer} flex={1} fontWeight="$medium" textAlign="start">
-                                                MUST BE EDITED FOR MC QUESTION # {i() + 1}: {question.question}
+                                                #{i() + 1}: {question.question}
                                             </Text>
                                             <AccordionIcon />
                                         </Match>
@@ -59,7 +59,8 @@ const QuizResultsAccordion = () => {
                                     </Match>
                                 </Switch>
                             </AccordionPanel>
-                        </AccordionItem>)
+                        </AccordionItem>
+                    )
                     }
                 </For>
             </Accordion>

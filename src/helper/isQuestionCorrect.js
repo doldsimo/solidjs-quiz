@@ -1,4 +1,7 @@
 export function isSingleChoiceCorrect(userAnswer, correctAnswer) {
+    if (userAnswer === null) {
+        return false;
+    }
     let isCorrect = true;
     if (Number(userAnswer) !== Number(correctAnswer)) {
         isCorrect = false;
