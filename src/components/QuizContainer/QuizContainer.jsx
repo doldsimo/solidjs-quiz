@@ -11,7 +11,6 @@ const QuizContainer = (props) => {
 
     setInitialQuizInfo(props.quiz);
 
-
     return (
         <div>
             <Switch>

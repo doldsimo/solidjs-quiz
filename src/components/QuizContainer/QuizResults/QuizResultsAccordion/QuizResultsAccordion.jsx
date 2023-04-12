@@ -11,11 +11,6 @@ import { isMultipleChoiceCorrect, isSingleChoiceCorrect } from "../../../../help
 const QuizResultsAccordion = () => {
     const { quiz, allUserAnswers } = useQuizData();
 
-    createMemo(() => {
-        console.log(quiz());
-        console.log(allUserAnswers());
-    });
-
     return (
         <div>
             <Accordion>

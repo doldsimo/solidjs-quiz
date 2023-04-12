@@ -6,22 +6,21 @@ import styles from './QuizResults.module.css';
 import { IoArrowBackCircleSharp } from 'solid-icons/io';
 import QuizResultsAccordion from "./QuizResultsAccordion/QuizResultsAccordion";
 
+
 const QuizResults = () => {
-    const { setCurrentPage, setCurrentQuestion, setAllUserAnswers, quiz, allUserAnswers } = useQuizData();
+    const { setCurrentPage, quiz, allUserAnswers, setInitialQuizInfo } = useQuizData();
     const [points, setPoints] = createSignal(0);
     const [showResultInfo, setShowResultInfo] = createSignal(false);
 
 
     const cleanQuiz = () => {
+        // Clear data after quiz is the same as setting initalQuiznfos and jumping back to start page
         setCurrentPage(0);
-        setCurrentQuestion({});
-        setAllUserAnswers(Array.from({ length: quiz().questions.length }, i => i = null));
-        // setQuiz({});
+        setInitialQuizInfo(quiz());
     }
 
     onMount(() => {
         const points = getUserResultPoints(allUserAnswers(), quiz());
-        console.log("output: ", points);
         setPoints(points);
     })
 

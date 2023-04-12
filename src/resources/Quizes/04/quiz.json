@@ -1,0 +1,94 @@
+{
+  "quizTitle": "SolidJS Quiz",
+  "allowBackjumping": true,
+  "questions": [
+    {
+      "question": "What are new JSX components that solidjs has out of the box compared to React?",
+      "questionType": "multiplechoice",
+      "answers": [
+        "For",
+        "Index",
+        "All",
+        "Switch",
+        "Match"
+      ],
+      "correctAnswer": [
+        true,
+        true,
+        false,
+        true,
+        true
+      ],
+      "messageForCorrectAnswer": "Correct answer. Good job.",
+      "messageForIncorrectAnswer": "Incorrect answer. Please try again.",
+      "explanation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "point": "10"
+    },
+    {
+      "question": "What are new JSX components that solidjs has out of the box compared to React?",
+      "questionType": "multiplechoice",
+      "answers": [
+        "For",
+        "Index",
+        "All",
+        "Switch",
+        "Match"
+      ],
+      "correctAnswer": [
+        true,
+        true,
+        false,
+        true,
+        true
+      ],
+      "messageForCorrectAnswer": "Correct answer. Good job.",
+      "messageForIncorrectAnswer": "Incorrect answer. Please try again.",
+      "explanation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "point": "10"
+    },
+    {
+      "question": "What are new JSX components that solidjs has out of the box compared to React?",
+      "questionType": "multiplechoice",
+      "answers": [
+        "For",
+        "Index",
+        "All",
+        "Switch",
+        "Match"
+      ],
+      "correctAnswer": [
+        true,
+        true,
+        false,
+        true,
+        true
+      ],
+      "messageForCorrectAnswer": "Correct answer. Good job.",
+      "messageForIncorrectAnswer": "Incorrect answer. Please try again.",
+      "explanation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "point": "10"
+    },
+    {
+      "question": "What are new JSX components that solidjs has out of the box compared to React?",
+      "questionType": "multiplechoice",
+      "answers": [
+        "For",
+        "Index",
+        "All",
+        "Switch",
+        "Match"
+      ],
+      "correctAnswer": [
+        true,
+        true,
+        false,
+        true,
+        true
+      ],
+      "messageForCorrectAnswer": "Correct answer. Good job.",
+      "messageForIncorrectAnswer": "Incorrect answer. Please try again.",
+      "explanation": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "point": "10"
+    }
+  ]
+}
