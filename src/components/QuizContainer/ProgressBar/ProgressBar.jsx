@@ -7,7 +7,7 @@ const ProgressBar = () => {
     <>
       <Progress size="lg" height="1em" value={ questionsSum() / currentPage() === 0 ? 1 : currentPage()} max={questionsSum()} >
         <ProgressIndicator />
-        <ProgressLabel />
+        {/* <ProgressLabel /> */}
       </Progress>
     </>
   )
