@@ -30,9 +30,8 @@ const Sortable = (props) => {
 };
 
 const SortableVerticalList = (props) => {
-    const [items, setItems] = createSignal(props.items);
     const [activeItem, setActiveItem] = createSignal(null);
-    const ids = () => items();
+    const ids = () => props.items;
 
     const onDragStart = ({ draggable }) => setActiveItem(draggable.id);
 
@@ -44,12 +43,10 @@ const SortableVerticalList = (props) => {
             if (fromIndex !== toIndex) {
                 const updatedItems = currentItems.slice();
                 updatedItems.splice(toIndex, 0, ...updatedItems.splice(fromIndex, 1));
-                setItems(updatedItems);
+                // Setting user Answer inside of the state after every dnd change
+                props.setItems(updatedItems);
             }
         }
-
-        // Setting user Answer inside of the state after every dnd change
-        console.log("Order: ", items());
     };
 
     return (
@@ -61,7 +58,7 @@ const SortableVerticalList = (props) => {
             <DragDropSensors />
             <div>
                 <SortableProvider ids={ids()}>
-                    <For each={items()}>{(item) => <Sortable item={item} />}</For>
+                    <For each={props.items}>{(item) => <Sortable item={item} />}</For>
                 </SortableProvider>
             </div>
             <DragOverlay>

@@ -6,8 +6,6 @@ import styles from "./MultipleChoiceResults.module.css";
 const MultipleChoiceResult = (props) => {
   const { allUserAnswers } = useQuizData();
 
-
-
   return (
     <div>
       <Index each={props.question.answers}>
@@ -20,4 +18,4 @@ const MultipleChoiceResult = (props) => {
   )
 }
 
-export default MultipleChoiceResult
+export default MultipleChoiceResult;

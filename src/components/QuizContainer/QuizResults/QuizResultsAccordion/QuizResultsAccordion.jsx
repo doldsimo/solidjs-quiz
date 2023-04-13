@@ -2,10 +2,11 @@ import { Switch, Match, createMemo } from "solid-js";
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Center, Icon, Text } from "@hope-ui/solid";
 import { useQuizData } from "../../../../context/quizState";
 import styles from "./QuizResultsAccordion.module.css";
-import SingleChoiceResult from "./QuestionTypeResult/SingleChoiceResult/SingleChoiceResult";
-import MultipleChoiceResult from "./QuestionTypeResult/MultipleChoiceResult/MultipleChoiceResult";
 import { AiFillCheckCircle, AiFillCloseCircle } from 'solid-icons/ai'
-import { isMultipleChoiceCorrect, isSingleChoiceCorrect } from "../../../../helper/isQuestionCorrect";
+import { isMultipleChoiceCorrect, isSingleChoiceCorrect, isCorrectOrderCorrect } from "../../../../helper/isQuestionCorrect";
+import CorrectOrder from "./QuestionTypeResult/CorrectOrderResult/CorrectOrderResult";
+import MultipleChoiceResult from "./QuestionTypeResult/MultipleChoiceResult/MultipleChoiceResult";
+import SingleChoiceResult from "./QuestionTypeResult/SingleChoiceResult/SingleChoiceResult";
 
 
 const QuizResultsAccordion = () => {
@@ -40,6 +41,15 @@ const QuizResultsAccordion = () => {
                                             </Text>
                                             <AccordionIcon />
                                         </Match>
+                                        <Match when={question.questionType === "correctorder"}>
+                                            <Center style={{ "margin-right": "0.5em" }}>
+                                                {isCorrectOrderCorrect(allUserAnswers()[i()], question.correctAnswer) ? <AiFillCheckCircle class={styles.correctAnswer} /> : <AiFillCloseCircle class={styles.wrongAnswer} />}
+                                            </Center>
+                                            <Text class={isCorrectOrderCorrect(allUserAnswers()[i()], question.correctAnswer) ? styles.correctAnswer : styles.wrongAnswer} flex={1} fontWeight="$medium" textAlign="start">
+                                                #{i() + 1}: {question.question}
+                                            </Text>
+                                            <AccordionIcon />
+                                        </Match>
                                     </Switch>
 
                                 </AccordionButton>
@@ -51,6 +61,9 @@ const QuizResultsAccordion = () => {
                                     </Match>
                                     <Match when={question.questionType === "multiplechoice"}>
                                         <MultipleChoiceResult question={question} qIndex={i()} />
+                                    </Match>
+                                    <Match when={question.questionType === "correctorder"}>
+                                        <CorrectOrder question={question} qIndex={i()} />
                                     </Match>
                                 </Switch>
                             </AccordionPanel>

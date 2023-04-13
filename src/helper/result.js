@@ -11,6 +11,9 @@ export default function getUserResultPoints(userAnswers, quiz) {
             case "multiplechoice":
                 tep_result = checkMultipleChoiceQuestion(userAnswers[i], quiz.questions[i].correctAnswer, quiz.questions[i].point);
                 break;
+            case "correctorder":
+                tep_result = checkCorrectOrderQestion(userAnswers[i], quiz.questions[i].correctAnswer, quiz.questions[i].point);
+                break;
             default:
                 break;
         }
@@ -22,7 +25,7 @@ export default function getUserResultPoints(userAnswers, quiz) {
     return result;
 }
 
-// Helper functions for calculate user points
+// calculate checkSingleChoiceQuestion points
 const checkSingleChoiceQuestion = (userAnswer, quizAnswer, pointsForQuestion) => {
     let result = { temp_resultSum: 0, temp_maxSum: 0 };
     let numberUserAnswer = userAnswer === null ? -1 : Number(userAnswer);
@@ -37,11 +40,26 @@ const checkSingleChoiceQuestion = (userAnswer, quizAnswer, pointsForQuestion) =>
     return result;
 }
 
+// calculate checkMultipleChoiceQuestion points
 const checkMultipleChoiceQuestion = (userAnswer, quizAnswer, pointsForQuestion) => {
     let result = { temp_resultSum: 0, temp_maxSum: 0 };
     let numberPointsForQuestion = Number(pointsForQuestion);
 
     for (let i = 0; i < userAnswer.length; i++) {
+        if (userAnswer[i] === quizAnswer[i]) {
+            result.temp_resultSum = result.temp_resultSum + numberPointsForQuestion;
+        }
+        result.temp_maxSum = result.temp_maxSum + numberPointsForQuestion;
+    }
+    return result;
+}
+
+// calculate CorrectOrderQestion points
+const checkCorrectOrderQestion = (userAnswer, quizAnswer, pointsForQuestion) => {
+    let result = { temp_resultSum: 0, temp_maxSum: 0 };
+    let numberPointsForQuestion = Number(pointsForQuestion);
+
+    for (let i = 0; i < quizAnswer.length; i++) {
         if (userAnswer[i] === quizAnswer[i]) {
             result.temp_resultSum = result.temp_resultSum + numberPointsForQuestion;
         }
