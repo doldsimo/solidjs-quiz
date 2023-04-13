@@ -5,7 +5,7 @@ const SingleChoiceTag = () => {
     return (
         <Tag size="md">
             <TagLeftIcon as={OcDotfill3} />
-            <TagLabel>Single Choice Question</TagLabel>
+            <TagLabel>Single Choice</TagLabel>
         </Tag>
     )
 }

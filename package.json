@@ -17,6 +17,7 @@
     "@hope-ui/solid": "^0.6.7",
     "@solidjs/router": "^0.8.1",
     "@stitches/core": "^1.2.8",
+    "@thisbeyond/solid-dnd": "^0.7.4",
     "solid-icons": "^1.0.4",
     "solid-js": "^1.6.10",
     "solid-transition-group": "^0.0.10"
