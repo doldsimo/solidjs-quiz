@@ -21,13 +21,13 @@ const QuizContainer = (props) => {
                 {/* When Error of quiz process is happening (higher than 100, or lower than 0) */}
                 {/* <Match when={currentPage() < -2 || progress() >= questionsSum}>
                     <Alert status="warning">
-                        <FiAlertTriangle />
-                        Seems like something is not working correct
+                    <FiAlertTriangle />
+                    Seems like something is not working correct
                     </Alert>
                 </Match> */}
                 {/* Normal Quiz is starting */}
                 <Match when={questionsSum() + 1 === currentPage()}>
-                    <QuizResults/>
+                    <QuizResults />
                 </Match>
                 <Match when={currentPage() > -1}>
                     <QuizContent />

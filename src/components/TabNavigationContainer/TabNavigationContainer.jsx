@@ -5,7 +5,7 @@ import { createSignal, For, Show } from 'solid-js';
 import { useQuizData } from '../../context/quizState';
 
 const TabNavigationContainer = () => {
-    const { currentPage } = useQuizData();
+    // const { currentPage } = useQuizData();
     const [pages, setPages] = createSignal([
         { text: "Home", path: "/home" },
         { text: "Quiz", path: "/quiz" },
@@ -14,7 +14,7 @@ const TabNavigationContainer = () => {
 
     return (
         <Show
-            when={currentPage() === 0}
+            when={true}
         >
             <Box class={styles.container}>
                 <For each={pages()}>
