@@ -8,7 +8,9 @@ import darkColors from './theme/darkColors';
 import TabNavigationContainer from './components/TabNavigationContainer/TabNavigationContainer';
 const Home = lazy(() => import("./pages/Home"));
 const Quiz = lazy(() => import("./pages/QuizPage"));
-const QuizEditor = lazy(() => import("./pages/QuizEditor"));
+//const QuizEditor = lazy(() => import("./pages/QuizEditor"));
+
+import QuizEditor from './pages/QuizEditor';
 
 // Config for HopeUi
 const config = {
