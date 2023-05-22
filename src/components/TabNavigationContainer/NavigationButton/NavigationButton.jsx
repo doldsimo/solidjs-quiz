@@ -1,8 +1,8 @@
 import styles from './NavigationButton.module.css';
 import { A } from '@solidjs/router';
 import { FaRegularLightbulb } from 'solid-icons/fa';
-import { RiSystemInformationLine } from 'solid-icons/ri'
 import { IoHome } from 'solid-icons/io'
+import { BiRegularEdit } from 'solid-icons/bi'
 
 
 const NavigationButton = (props) => {
@@ -15,8 +15,8 @@ const NavigationButton = (props) => {
                 <Match when={props.path === "/quiz"}>
                     <FaRegularLightbulb class={styles.navIcon} />
                 </Match>
-                <Match when={props.path === "/about"}>
-                    <RiSystemInformationLine class={styles.navIcon} />
+                <Match when={props.path === "/editor"}>
+                    <BiRegularEdit class={styles.navIcon} />
                 </Match>
             </Switch>
             {props.text}

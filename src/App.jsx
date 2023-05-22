@@ -8,7 +8,7 @@ import darkColors from './theme/darkColors';
 import TabNavigationContainer from './components/TabNavigationContainer/TabNavigationContainer';
 const Home = lazy(() => import("./pages/Home"));
 const Quiz = lazy(() => import("./pages/QuizPage"));
-const About = lazy(() => import("./pages/About"));
+const QuizEditor = lazy(() => import("./pages/QuizEditor"));
 
 // Config for HopeUi
 const config = {
@@ -30,7 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate href="/home" />} />
           <Route path="/quiz" component={Quiz} />
-          <Route path="/about" element={About} />
+          <Route path="/editor" element={QuizEditor} />
           <Route path="/home" component={Home} />
         </Routes>
         <TabNavigationContainer />

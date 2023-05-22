@@ -8,7 +8,7 @@ const TabNavigationContainer = () => {
     const [pages, setPages] = createSignal([
         { text: "Home", path: "/home" },
         { text: "Quiz", path: "/quiz" },
-        { text: "About", path: "/about" }
+        { text: "Editor", path: "/editor" }
     ]);
 
     return (
