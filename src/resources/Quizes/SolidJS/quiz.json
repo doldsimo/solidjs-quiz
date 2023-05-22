@@ -1,6 +1,4 @@
 {
-  "quizTitle": "SolidJS Quiz",
-  "allowBackjumping": true,
   "questions": [
     {
       "question": "Who invented solidjs?",

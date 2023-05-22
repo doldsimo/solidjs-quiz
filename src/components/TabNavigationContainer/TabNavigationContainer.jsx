@@ -2,7 +2,6 @@ import styles from './TabNavigationContainer.module.css'
 import NavigationButton from "./NavigationButton/NavigationButton";
 import { Box } from "@hope-ui/solid"
 import { createSignal, For, Show } from 'solid-js';
-import { useQuizData } from '../../context/quizState';
 
 const TabNavigationContainer = () => {
     // const { currentPage } = useQuizData();

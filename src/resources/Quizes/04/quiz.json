@@ -1,6 +1,4 @@
 {
-  "quizTitle": "SolidJS Quiz",
-  "allowBackjumping": true,
   "questions": [
     {
       "question": "What are new JSX components that solidjs has out of the box compared to React?",
