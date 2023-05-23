@@ -2,7 +2,7 @@ import { Button, Center, Box, Heading, Text, Select, SelectTrigger, SelectPlaceh
 
 import { AiOutlineCloudDownload } from 'solid-icons/ai'
 import { AiOutlinePlus } from 'solid-icons/ai'
-import { For, Match, Show, Switch, createSignal } from "solid-js";
+import { For, Match, Show, Switch, createEffect, createSignal } from "solid-js";
 import { AiFillDelete } from 'solid-icons/ai'
 import { AiOutlineInfoCircle } from 'solid-icons/ai'
 
@@ -10,23 +10,25 @@ function QuizEditor() {
 
     const [quizData, setQuizData] = createSignal([]);
     const [modalQuestion, setModalQuestion] = createSignal({
-        question: "Test Q.",
-        answers: [
+        "question": "What are new JSX components that solidjs has out of the box compared to React?",
+        "questionType": "multiplechoice",
+        "answers": [
             "For",
             "Index",
             "All",
             "Switch",
             "Match"
         ],
-        correctAnswer: [
+        "correctAnswer": [
             true,
             true,
             false,
             true,
             true
         ],
-        point: "10"
+        "point": "10"
     });
+    const [modalQuestionAnswers, setModalQuestionAnswers] = createSignal([]);
     const [currentQestionType, setCurrentQestionType] = createSignal("multiplechoice");
     const [currentIndexQuestion, setCurrentIndexQuestion] = createSignal(-1);
 
@@ -54,15 +56,34 @@ function QuizEditor() {
         onOpen();
     }
 
+    const addNewAnswer = () => {
+        let newAnswers = modalQuestion().answers.concat("");
+        setModalQuestion(prevState => ({
+            ...prevState,
+            answers: newAnswers
+        }));
+    }
+
+    const deleteAnswer = (index) => {
+        console.log(index);
+        let newAnswers = modalQuestion().answers.filter((_, i) => i !== index);
+        console.log(newAnswers);
+        setModalQuestion(prevState => ({
+            ...prevState,
+            answers: newAnswers
+        }));
+    }
+
+
     return (
         <>
             <br />
             <Center>
-                <Heading level={1} size={"3xl"}>QuizEditor</Heading>
+                <Heading level={1} size={"3xl"}>Quiz editor</Heading>
                 <div style={{ margin: "1em" }}>
 
                     <Tooltip withArrow label="This editor can be used to create a quiz which can be integrated in the quiz component. The output of this editor will be a JSON file which can also can be edited afterwards to make small changes">
-                        <AiOutlineInfoCircle color="red" />
+                        <AiOutlineInfoCircle color="red" size={18} />
                     </Tooltip>
                 </div>
 
@@ -119,28 +140,24 @@ function QuizEditor() {
                             </div>
                             <div style={{ display: "flex" }}>
                                 <Text style={{ margin: "1em" }}>Question:</Text>
-                                <Textarea placeholder="Basic usage" value={modalQuestion() !== null ? modalQuestion().question : ""} />
+                                <Textarea placeholder="Type your question..." value={modalQuestion() !== null ? modalQuestion().question : ""} />
                             </div>
                             <div>
                                 <Switch>
                                     <Match when={currentQestionType() === "multiplechoice"}>
                                         <div>
-                                            <Show
-                                                when={modalQuestion() !== null}
-                                            >
-                                                <Text style={{ margin: "1em" }}>Answer Options:</Text>
-
-                                                <For each={modalQuestion().answers}>
-                                                    {(item, index) => (
-                                                        <div style={{ display: "flex", margin: "1em" }}>
-                                                            <Text style={{ margin: "auto", "margin-right": ".5em" }}>{index() + 1}</Text>
-                                                            <Input placeholder={index() + 1} size="md" value={item} />
-                                                            <IconButton colorScheme="danger" aria-label="Search" icon={<AiFillDelete />} />
-                                                        </div>
-                                                    )}
-                                                </For>
-                                            </Show>
-                                            <Button leftIcon={<AiOutlinePlus />} variant="outline" >Add answer</Button>
+                                            <Text style={{ margin: "1em" }}>Answer Options:</Text>
+                                            <For each={modalQuestion() !== null ? modalQuestion().answers : []}>
+                                                {(item, index) => (
+                                                    <div style={{ display: "flex", margin: "1em" }}>
+                                                        <Text style={{ margin: "auto", "margin-right": ".5em" }}>{index() + 1}</Text>
+                                                        <Input placeholder={index() + 1} size="md" value={item} />
+                                                        <IconButton colorScheme="danger" aria-label="Search" onclick={() => deleteAnswer(index())} icon={<AiFillDelete />} />
+                                                    </div>
+                                                )}
+                                            </For>
+                                            {modalQuestionAnswers()}
+                                            <Button leftIcon={<AiOutlinePlus />} variant="outline" onclick={addNewAnswer}>Add answer</Button>
                                         </div>
                                         <div>
                                             <Text style={{ margin: "1em" }}>Numbers of correct answers, devide with comas:</Text>
