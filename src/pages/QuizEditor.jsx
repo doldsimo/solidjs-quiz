@@ -1,14 +1,34 @@
-import { Button, Center, Box, Heading, Text, Select, SelectTrigger, SelectPlaceholder, SelectIcon, SelectValue, SelectContent, SelectListbox, SelectOption, SelectOptionText, SelectOptionIndicator, Textarea, createDisclosure, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalHeader, ModalBody, ModalFooter, Input, IconButton, Tooltip } from "@hope-ui/solid";
+import { Button, Center, Box, Heading, Text, Select, SelectTrigger, SelectPlaceholder, SelectIcon, SelectValue, SelectContent, SelectListbox, SelectOption, SelectOptionText, SelectOptionIndicator, Textarea, createDisclosure, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalHeader, ModalBody, ModalFooter, Input, IconButton, Tooltip, Checkbox } from "@hope-ui/solid";
 
 import { AiOutlineCloudDownload } from 'solid-icons/ai'
 import { AiOutlinePlus } from 'solid-icons/ai'
 import { For, Match, Show, Switch, createEffect, createSignal } from "solid-js";
-import { AiFillDelete } from 'solid-icons/ai'
-import { AiOutlineInfoCircle } from 'solid-icons/ai'
+
+import { AiOutlineInfoCircle, AiFillEdit, AiFillDelete } from 'solid-icons/ai'
+import MultipleChoice from "../components/EditQestionType/MultipleChoice";
+
 
 function QuizEditor() {
 
-    const [quizData, setQuizData] = createSignal([]);
+    const [quizData, setQuizData] = createSignal([{
+        "question": "What are new JSX components that solidjs has out of the box compared to React?",
+        "questionType": "multiplechoice",
+        "answers": [
+            "For",
+            "Index",
+            "All",
+            "Switch",
+            "Match"
+        ],
+        "correctAnswer": [
+            true,
+            true,
+            false,
+            true,
+            true
+        ],
+        "point": "10"
+    }]);
     const [modalQuestion, setModalQuestion] = createSignal({
         "question": "What are new JSX components that solidjs has out of the box compared to React?",
         "questionType": "multiplechoice",
@@ -56,24 +76,21 @@ function QuizEditor() {
         onOpen();
     }
 
-    const addNewAnswer = () => {
-        let newAnswers = modalQuestion().answers.concat("");
-        setModalQuestion(prevState => ({
-            ...prevState,
-            answers: newAnswers
-        }));
+
+    const saveAndCloseModal = () => {
+        onClose();
+        // if quiz index -1 adding new question to the end of the questions array
+        if (currentIndexQuestion() === -1) {
+            let newQuizData = quizData().concat(modalQuestion());
+            setQuizData(newQuizData);
+        }
     }
 
-    const deleteAnswer = (index) => {
+    const deleteQuizQuestion = (index) => {
         console.log(index);
-        let newAnswers = modalQuestion().answers.filter((_, i) => i !== index);
-        console.log(newAnswers);
-        setModalQuestion(prevState => ({
-            ...prevState,
-            answers: newAnswers
-        }));
+        let newQuestions = quizData().filter((_, i) => i !== index);
+        setQuizData(newQuestions);
     }
-
 
     return (
         <>
@@ -89,6 +106,7 @@ function QuizEditor() {
 
             </Center>
             <br />
+
             <Switch>
                 <Match when={quizData().length === 0}>
                     <Center>
@@ -96,15 +114,32 @@ function QuizEditor() {
                     </Center>
                 </Match>
                 <Match when={quizData().length !== 0}>
-                    <div>
+                    <Center>
                         <div>
-                            <Heading level={3} size={"base"}># 1</Heading>
+                            <div>
+                                <For each={quizData()}>
+                                    {(item, index) => (
+                                        <div value={item} style={{ "background-color": "lightgrey", "margin-bottom": "1em", padding: ".5em" }}>
+                                            <Heading level={3} size={"base"}># {index() + 1}</Heading>
+                                            <div style={{ display: "flex" }}>
+                                                <div >
+                                                    <Text>{item.question}</Text>
+                                                    <Text style={{ color: "grey" }}>{item.questionType}</Text>
+                                                </div>
+                                                <IconButton style={{ "margin-right": "1em", "margin-left": "1em" }} colorScheme="warning" aria-label="Edit" icon={<AiFillEdit />} />
+                                                <IconButton style={{ "margin-right": "1em" }} colorScheme="danger" onClick={() => deleteQuizQuestion(index())} aria-label="Delete" icon={<AiFillDelete />} />
+                                            </div>
+
+                                        </div>
+                                    )}
+                                </For>
+                            </div>
+                            <Button leftIcon={<AiOutlinePlus />} variant="outline" onclick={addNewQuestion}>Add question</Button>
+                            <br />
+                            <br />
+                            <Button leftIcon={<AiOutlineCloudDownload boxSize={18} />} onClick={() => handleDownloadJSON()}>Download your Quiz JSON</Button>
                         </div>
-                        <Button leftIcon={<AiOutlinePlus />} variant="outline" onclick={addNewQuestion}>Add question</Button>
-                        <br />
-                        <br />
-                        <Button leftIcon={<AiOutlineCloudDownload boxSize={18} />} onClick={() => handleDownloadJSON()}>Download your Quiz JSON</Button>
-                    </div>
+                    </Center>
                 </Match>
 
 
@@ -114,59 +149,11 @@ function QuizEditor() {
                         <ModalCloseButton />
                         <ModalHeader>Add Question</ModalHeader>
                         <ModalBody>
-                            <div style={{ display: "flex" }}>
-                                <Text style={{ margin: "1em" }}>Questiontype:</Text>
-                                <div style={{ width: "12em", margin: "1em" }}>
-                                    <Select defaultValue={"bla"} value={currentQestionType()} onChange={(e) => setCurrentQestionType(e)}>
-                                        <SelectTrigger>
-                                            <SelectPlaceholder>Choose questiontype</SelectPlaceholder>
-                                            <SelectValue />
-                                            <SelectIcon />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectListbox>
-                                                <For each={["multiplechoice", "singlechoice", "correctorder", "numberinput", "gaptext"]}>
-                                                    {item => (
-                                                        <SelectOption value={item} >
-                                                            <SelectOptionText>{item}</SelectOptionText>
-                                                            <SelectOptionIndicator />
-                                                        </SelectOption>
-                                                    )}
-                                                </For>
-                                            </SelectListbox>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                            </div>
-                            <div style={{ display: "flex" }}>
-                                <Text style={{ margin: "1em" }}>Question:</Text>
-                                <Textarea placeholder="Type your question..." value={modalQuestion() !== null ? modalQuestion().question : ""} />
-                            </div>
+                            
                             <div>
                                 <Switch>
                                     <Match when={currentQestionType() === "multiplechoice"}>
-                                        <div>
-                                            <Text style={{ margin: "1em" }}>Answer Options:</Text>
-                                            <For each={modalQuestion() !== null ? modalQuestion().answers : []}>
-                                                {(item, index) => (
-                                                    <div style={{ display: "flex", margin: "1em" }}>
-                                                        <Text style={{ margin: "auto", "margin-right": ".5em" }}>{index() + 1}</Text>
-                                                        <Input placeholder={index() + 1} size="md" value={item} />
-                                                        <IconButton colorScheme="danger" aria-label="Search" onclick={() => deleteAnswer(index())} icon={<AiFillDelete />} />
-                                                    </div>
-                                                )}
-                                            </For>
-                                            {modalQuestionAnswers()}
-                                            <Button leftIcon={<AiOutlinePlus />} variant="outline" onclick={addNewAnswer}>Add answer</Button>
-                                        </div>
-                                        <div>
-                                            <Text style={{ margin: "1em" }}>Numbers of correct answers, devide with comas:</Text>
-                                            <Input placeholder="Numbers devided by comas" value={modalQuestion() !== null ? modalQuestion().correctAnswer.map((item, index) => item === true && index + 1).filter(item => item !== false) : null} />
-                                        </div>
-                                        <div>
-                                            <Text style={{ margin: "1em" }}>Points per correct answer:</Text>
-                                            <Input placeholder="Points" value={modalQuestion() !== null ? modalQuestion().point : ""} />
-                                        </div>
+                                        <MultipleChoice modalQuestion={modalQuestion()} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion()} currentQestionType={currentQestionType()}/>
 
 
                                     </Match>
@@ -186,7 +173,7 @@ function QuizEditor() {
                             </div>
                         </ModalBody>
                         <ModalFooter>
-                            <Button onClick={onClose}>Close and Save</Button>
+                            <Button onClick={saveAndCloseModal}>Close and Save</Button>
                         </ModalFooter>
                     </ModalContent>
                 </Modal>
