@@ -49,7 +49,7 @@ function QuizEditor() {
         "point": "10"
     });
     const [modalQuestionAnswers, setModalQuestionAnswers] = createSignal([]);
-    const [currentQestionType, setCurrentQestionType] = createSignal("multiplechoice");
+    const [currentQuestionType, setCurrentQuestionType] = createSignal("multiplechoice");
     const [currentIndexQuestion, setCurrentIndexQuestion] = createSignal(-1);
 
     const { isOpen, onOpen, onClose } = createDisclosure();
@@ -72,7 +72,7 @@ function QuizEditor() {
     }
 
     const addNewQuestion = () => {
-        setCurrentQestionType("multiplechoice");
+        setCurrentQuestionType("multiplechoice");
         onOpen();
     }
 
@@ -152,21 +152,20 @@ function QuizEditor() {
                             
                             <div>
                                 <Switch>
-                                    <Match when={currentQestionType() === "multiplechoice"}>
-                                        <MultipleChoice modalQuestion={modalQuestion()} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion()} currentQestionType={currentQestionType()}/>
-
-
+                                    <Match when={currentQuestionType() === "multiplechoice"}>
+                                        <MultipleChoice modalQuestion={modalQuestion()} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion()} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType}/>
                                     </Match>
-                                    <Match when={currentQestionType() === "singlechoice"}>
+                                    <Match when={currentQuestionType() === "singlechoice"}>
                                         <p>singlechoice</p>
                                     </Match>
-                                    <Match when={currentQestionType() === "correctorder"}>
+                                    <Match when={currentQuestionType() === "correctorder"}>
                                         <p>correctorder</p>
                                     </Match>
-                                    <Match when={currentQestionType() === "numberinput"}>
+                                    <Match when={currentQuestionType() === "numberinput"}>
                                         <p>numberinput</p>
+                                        <p>Test</p>
                                     </Match>
-                                    <Match when={currentQestionType() === "gaptext"}>
+                                    <Match when={currentQuestionType() === "gaptext"}>
                                         <p>gaptext</p>
                                     </Match>
                                 </Switch>

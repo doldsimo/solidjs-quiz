@@ -36,7 +36,7 @@ function MultipleChoice(props) {
 
                 <Text style={{ margin: "1em" }}>Questiontype:</Text>
                 <div style={{ width: "12em", margin: "1em" }}>
-                    <Select defaultValue={"bla"} value={props.currentQestionType} onChange={(e) => setCurrentQestionType(e)}>
+                    <Select defaultValue={"bla"} value={props.currentQuestionType} onChange={(e) => props.setCurrentQuestionType(e)}>
                         <SelectTrigger>
                             <SelectPlaceholder>Choose questiontype</SelectPlaceholder>
                             <SelectValue />
@@ -59,9 +59,9 @@ function MultipleChoice(props) {
             </div>
             <div style={{ display: "flex" }}>
                 <Text style={{ margin: "1em" }}>Question:</Text>
-                <InputGroup> 
+                <InputGroup>
                     <Input placeholder="Type your question..." value={props.modalQuestion !== null ? props.modalQuestion.question : ""} onChange={(e) => handleQuestionOnchange(e)} />
-                    <Input type="number"placeholder="Your answer (Number)" onChange={(e) => console.log(e)}  />
+                    <Input type="number" placeholder="Your answer (Number)" onChange={(e) => console.log(e)} />
                 </InputGroup>
             </div>
             <div>
