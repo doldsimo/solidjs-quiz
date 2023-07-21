@@ -86,6 +86,7 @@ function QuizEditor() {
 
     const saveAndCloseModal = () => {
         onClose();
+        console.log(modalQuestion());
         let newQuizData;
         // if quiz index -1 adding new question to the end of the questions array
         if (currentIndexQuestion() === -1) {
@@ -167,7 +168,7 @@ function QuizEditor() {
                     <ModalOverlay />
                     <ModalContent>
                         <ModalCloseButton />
-                        <ModalHeader>Add Question</ModalHeader>
+                        <ModalHeader>{isEditing() ? "Edit question" : "Add question"}</ModalHeader>
                         <ModalBody>
                             <div>
                                 <Switch>

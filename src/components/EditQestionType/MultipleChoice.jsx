@@ -22,9 +22,11 @@ function MultipleChoice(props) {
     }
 
     const handleQuestionOnchange = (e) => {
-        console.log("change");
         console.log(e.target.value);
-
+        let prevState = props.modalQuestion();
+        prevState.question = e.target.value;
+        let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        props.setModalQuestion(newState);
     }
 
     return (
@@ -59,7 +61,7 @@ function MultipleChoice(props) {
             <div style={{ display: "flex" }}>
                 <Text style={{ margin: "1em" }}>Question:</Text>
                 <InputGroup>
-                    <Input placeholder="Type your question..." value={props.modalQuestion() !== null ? props.modalQuestion().question : ""} onChange={(e) => handleQuestionOnchange(e)} />
+                    <Input onkeyup={(e) => handleQuestionOnchange(e)} placeholder="Type your question..." value={props.modalQuestion() !== null ? props.modalQuestion().question : ""} />
                 </InputGroup>
             </div>
             <div>
