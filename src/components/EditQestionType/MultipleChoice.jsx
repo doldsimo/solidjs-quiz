@@ -6,21 +6,19 @@ function MultipleChoice(props) {
 
 
     const addNewAnswer = () => {
-        let newAnswers = props.modalQuestion.answers.concat("");
-        props.setModalQuestion(prevState => ({
-            ...prevState,
-            answers: newAnswers
-        }));
+        let prevState = props.modalQuestion();
+        let newAnswers = props.modalQuestion().answers.concat("");
+        prevState.answers = newAnswers;
+        let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        props.setModalQuestion(newState);
     }
 
     const deleteAnswer = (index) => {
-        console.log(index);
-        let newAnswers = props.modalQuestion.answers.filter((_, i) => i !== index);
-        console.log(newAnswers);
-        props.setModalQuestion(prevState => ({
-            ...prevState,
-            answers: newAnswers
-        }));
+        let prevState = props.modalQuestion();
+        let newAnswers = props.modalQuestion().answers.filter((_, i) => i !== index);
+        prevState.answers = newAnswers;
+        let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        props.setModalQuestion(newState);
     }
 
     const handleQuestionOnchange = (e) => {
@@ -60,13 +58,12 @@ function MultipleChoice(props) {
             <div style={{ display: "flex" }}>
                 <Text style={{ margin: "1em" }}>Question:</Text>
                 <InputGroup>
-                    <Input placeholder="Type your question..." value={props.modalQuestion !== null ? props.modalQuestion.question : ""} onChange={(e) => handleQuestionOnchange(e)} />
-                    <Input type="number" placeholder="Your answer (Number)" onChange={(e) => console.log(e)} />
+                    <Input placeholder="Type your question..." value={props.modalQuestion() !== null ? props.modalQuestion().question : ""} onChange={(e) => handleQuestionOnchange(e)} />
                 </InputGroup>
             </div>
             <div>
                 <Text style={{ margin: "1em" }}>Answer Options:</Text>
-                <For each={props.modalQuestion !== null ? props.modalQuestion.answers : []}>
+                <For each={props.modalQuestion() !== null ? props.modalQuestion().answers : []}>
                     {(item, index) => (
                         <div style={{ display: "flex", margin: "1em" }}>
                             <Text style={{ margin: "auto", "margin-right": ".5em" }}>{index() + 1}</Text>
@@ -75,16 +72,16 @@ function MultipleChoice(props) {
                         </div>
                     )}
                 </For>
-                {props.modalQuestionAnswers}
+                {/* {props.modalQuestionAnswers} */}
                 <Button leftIcon={<AiOutlinePlus />} variant="outline" onclick={addNewAnswer}>Add answer</Button>
-            </div>
+            </div >
             <div>
                 <Text style={{ margin: "1em" }}>Numbers of correct answers, devide with comas:</Text>
-                <Input placeholder="Numbers devided by comas" value={props.modalQuestion !== null ? props.modalQuestion.correctAnswer.map((item, index) => item === true && index + 1).filter(item => item !== false) : null} />
+                <Input placeholder="Numbers devided by comas" value={props.modalQuestion() !== null ? props.modalQuestion().correctAnswer.map((item, index) => item === true && index + 1).filter(item => item !== false) : null} />
             </div>
             <div>
                 <Text style={{ margin: "1em" }}>Points per correct answer:</Text>
-                <Input placeholder="Points" value={props.modalQuestion !== null ? props.modalQuestion.point : ""} />
+                <Input placeholder="Points" value={props.modalQuestion() !== null ? props.modalQuestion().point : ""} />
             </div>
 
         </>

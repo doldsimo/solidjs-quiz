@@ -56,6 +56,13 @@ function NumberInput(props) {
                         </SelectContent>
                     </Select>
                 </div>
+                <div style={{ display: "flex" }}>
+                    <Text style={{ margin: "1em" }}>Question:</Text>
+                    <InputGroup>
+                        <Input placeholder="Type your question..." value={props.modalQuestion !== null ? props.modalQuestion.question : ""} onChange={(e) => handleQuestionOnchange(e)} />
+                        <Input type="number" placeholder="Your answer (Number)" onChange={(e) => console.log(e)} />
+                    </InputGroup>
+                </div>
             </div>
         </>
     );

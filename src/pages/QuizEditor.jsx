@@ -33,6 +33,8 @@ function QuizEditor() {
         ],
         "point": "10"
     }]);
+
+
     const [modalQuestion, setModalQuestion] = createSignal({
         "question": "What are new JSX components that solidjs has out of the box compared to React?",
         "questionType": "multiplechoice",
@@ -157,19 +159,19 @@ function QuizEditor() {
                             <div>
                                 <Switch>
                                     <Match when={currentQuestionType() === "multiplechoice"}>
-                                        <MultipleChoice modalQuestion={modalQuestion()} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion()} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
+                                        <MultipleChoice modalQuestion={modalQuestion} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
                                     </Match>
                                     <Match when={currentQuestionType() === "singlechoice"}>
-                                        <SingleChoice modalQuestion={modalQuestion()} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion()} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
+                                        <SingleChoice modalQuestion={modalQuestio} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
                                     </Match>
                                     <Match when={currentQuestionType() === "correctorder"}>
-                                        <CorrectOrder modalQuestion={modalQuestion()} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion()} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
+                                        <CorrectOrder modalQuestion={modalQuestion} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
                                     </Match>
                                     <Match when={currentQuestionType() === "numberinput"}>
-                                        <NumberInput modalQuestion={modalQuestion()} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion()} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
+                                        <NumberInput modalQuestion={modalQuestion} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
                                     </Match>
                                     <Match when={currentQuestionType() === "gaptext"}>
-                                        <GapText modalQuestion={modalQuestion()} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion()} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
+                                        <GapText modalQuestion={modalQuestion} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
                                     </Match>
                                 </Switch>
                             </div>
