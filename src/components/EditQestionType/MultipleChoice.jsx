@@ -30,31 +30,32 @@ function MultipleChoice(props) {
     return (
         <>
 
-            <div style={{ display: "flex" }}>
-
-                <Text style={{ margin: "1em" }}>Questiontype:</Text>
-                <div style={{ width: "12em", margin: "1em" }}>
-                    <Select defaultValue={"bla"} value={props.currentQuestionType} onChange={(e) => props.setCurrentQuestionType(e)}>
-                        <SelectTrigger>
-                            <SelectPlaceholder>Choose questiontype</SelectPlaceholder>
-                            <SelectValue />
-                            <SelectIcon />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectListbox>
-                                <For each={["multiplechoice", "singlechoice", "correctorder", "numberinput", "gaptext"]}>
-                                    {item => (
-                                        <SelectOption value={item} >
-                                            <SelectOptionText>{item}</SelectOptionText>
-                                            <SelectOptionIndicator />
-                                        </SelectOption>
-                                    )}
-                                </For>
-                            </SelectListbox>
-                        </SelectContent>
-                    </Select>
+            {
+                props.isEditing() ? null : <div style={{ display: "flex" }}>
+                    <Text style={{ margin: "1em" }}>Questiontype:</Text>
+                    <div style={{ width: "12em", margin: "1em" }}>
+                        <Select defaultValue={"bla"} value={props.currentQuestionType} onChange={(e) => props.setCurrentQuestionType(e)}>
+                            <SelectTrigger>
+                                <SelectPlaceholder>Choose questiontype</SelectPlaceholder>
+                                <SelectValue />
+                                <SelectIcon />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectListbox>
+                                    <For each={["multiplechoice", "singlechoice", "correctorder", "numberinput", "gaptext"]}>
+                                        {item => (
+                                            <SelectOption value={item} >
+                                                <SelectOptionText>{item}</SelectOptionText>
+                                                <SelectOptionIndicator />
+                                            </SelectOption>
+                                        )}
+                                    </For>
+                                </SelectListbox>
+                            </SelectContent>
+                        </Select>
+                    </div>
                 </div>
-            </div>
+            }
             <div style={{ display: "flex" }}>
                 <Text style={{ margin: "1em" }}>Question:</Text>
                 <InputGroup>

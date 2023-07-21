@@ -55,6 +55,7 @@ function QuizEditor() {
         "point": "10"
     });
     const [modalQuestionAnswers, setModalQuestionAnswers] = createSignal([]);
+    const [isEditing, setIsEditing] = createSignal(false);
     const [currentQuestionType, setCurrentQuestionType] = createSignal("multiplechoice");
     const [currentIndexQuestion, setCurrentIndexQuestion] = createSignal(-1);
 
@@ -85,9 +86,15 @@ function QuizEditor() {
 
     const saveAndCloseModal = () => {
         onClose();
+        let newQuizData;
         // if quiz index -1 adding new question to the end of the questions array
         if (currentIndexQuestion() === -1) {
-            let newQuizData = quizData().concat(modalQuestion());
+            if (isEditing()) {
+                newQuizData = quizData()
+            } else {
+                newQuizData = quizData().concat(modalQuestion());
+                setIsEditing(false);
+            }
             setQuizData(newQuizData);
         }
     }
@@ -96,6 +103,20 @@ function QuizEditor() {
         console.log(index);
         let newQuestions = quizData().filter((_, i) => i !== index);
         setQuizData(newQuestions);
+    }
+
+    const handleEditing = (item, index) => {
+        console.log(index);
+        console.log(item);
+
+        setIsEditing(true);
+        let getModalQuestion = quizData()[index];
+        setModalQuestion(getModalQuestion);
+
+        setCurrentQuestionType(getModalQuestion.questionType);
+        onOpen();
+
+        console.log(getModalQuestion);
     }
 
     return (
@@ -109,10 +130,8 @@ function QuizEditor() {
                         <AiOutlineInfoCircle color="red" size={18} />
                     </Tooltip>
                 </div>
-
             </Center>
             <br />
-
             <Switch>
                 <Match when={quizData().length === 0}>
                     <Center>
@@ -132,7 +151,7 @@ function QuizEditor() {
                                                     <Text>{item.question}</Text>
                                                     <Text style={{ color: "grey" }}>{item.questionType}</Text>
                                                 </div>
-                                                <IconButton style={{ "margin-right": "1em", "margin-left": "1em" }} colorScheme="warning" aria-label="Edit" icon={<AiFillEdit />} />
+                                                <IconButton style={{ "margin-right": "1em", "margin-left": "1em" }} colorScheme="warning" aria-label="Edit" icon={<AiFillEdit />} onClick={() => handleEditing(item, index())} />
                                                 <IconButton style={{ "margin-right": "1em" }} colorScheme="danger" onClick={() => deleteQuizQuestion(index())} aria-label="Delete" icon={<AiFillDelete />} />
                                             </div>
 
@@ -155,23 +174,22 @@ function QuizEditor() {
                         <ModalCloseButton />
                         <ModalHeader>Add Question</ModalHeader>
                         <ModalBody>
-
                             <div>
                                 <Switch>
                                     <Match when={currentQuestionType() === "multiplechoice"}>
-                                        <MultipleChoice modalQuestion={modalQuestion} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
+                                        <MultipleChoice modalQuestion={modalQuestion} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} isEditing={isEditing} setIsEditing={setIsEditing} />
                                     </Match>
                                     <Match when={currentQuestionType() === "singlechoice"}>
-                                        <SingleChoice modalQuestion={modalQuestio} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
+                                        <SingleChoice modalQuestion={modalQuestio} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} isEditing={isEditing} setIsEditing={setIsEditing} />
                                     </Match>
                                     <Match when={currentQuestionType() === "correctorder"}>
-                                        <CorrectOrder modalQuestion={modalQuestion} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
+                                        <CorrectOrder modalQuestion={modalQuestion} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} isEditing={isEditing} setIsEditing={setIsEditing} />
                                     </Match>
                                     <Match when={currentQuestionType() === "numberinput"}>
-                                        <NumberInput modalQuestion={modalQuestion} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
+                                        <NumberInput modalQuestion={modalQuestion} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} isEditing={isEditing} setIsEditing={setIsEditing} />
                                     </Match>
                                     <Match when={currentQuestionType() === "gaptext"}>
-                                        <GapText modalQuestion={modalQuestion} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
+                                        <GapText modalQuestion={modalQuestion} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} isEditing={isEditing} setIsEditing={setIsEditing} />
                                     </Match>
                                 </Switch>
                             </div>
