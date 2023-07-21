@@ -64,8 +64,8 @@ function QuizEditor() {
     const handleDownloadJSON = () => {
         console.log("download JSON");
         const exampleJSON = {
-            title: "Test",
-            second: false
+            // title: "Test",
+            questions: quizData()
         }
         download(JSON.stringify(exampleJSON), "quiz.json", "text/plain");
     }
@@ -91,9 +91,9 @@ function QuizEditor() {
         if (currentIndexQuestion() === -1) {
             if (isEditing()) {
                 newQuizData = quizData()
+                setIsEditing(false);
             } else {
                 newQuizData = quizData().concat(modalQuestion());
-                setIsEditing(false);
             }
             setQuizData(newQuizData);
         }
@@ -106,17 +106,12 @@ function QuizEditor() {
     }
 
     const handleEditing = (item, index) => {
-        console.log(index);
-        console.log(item);
-
         setIsEditing(true);
         let getModalQuestion = quizData()[index];
         setModalQuestion(getModalQuestion);
 
         setCurrentQuestionType(getModalQuestion.questionType);
         onOpen();
-
-        console.log(getModalQuestion);
     }
 
     return (
