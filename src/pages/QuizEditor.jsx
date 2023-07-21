@@ -6,6 +6,10 @@ import { For, Match, Show, Switch, createEffect, createSignal } from "solid-js";
 
 import { AiOutlineInfoCircle, AiFillEdit, AiFillDelete } from 'solid-icons/ai'
 import MultipleChoice from "../components/EditQestionType/MultipleChoice";
+import SingleChoice from "../components/EditQestionType/SingleChoice";
+import CorrectOrder from "../components/EditQestionType/CorrectOrder";
+import NumberInput from "../components/EditQestionType/NumberInput";
+import GapText from "../components/EditQestionType/GapText";
 
 
 function QuizEditor() {
@@ -149,24 +153,23 @@ function QuizEditor() {
                         <ModalCloseButton />
                         <ModalHeader>Add Question</ModalHeader>
                         <ModalBody>
-                            
+
                             <div>
                                 <Switch>
                                     <Match when={currentQuestionType() === "multiplechoice"}>
-                                        <MultipleChoice modalQuestion={modalQuestion()} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion()} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType}/>
+                                        <MultipleChoice modalQuestion={modalQuestion()} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion()} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
                                     </Match>
                                     <Match when={currentQuestionType() === "singlechoice"}>
-                                        <p>singlechoice</p>
+                                        <SingleChoice modalQuestion={modalQuestion()} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion()} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
                                     </Match>
                                     <Match when={currentQuestionType() === "correctorder"}>
-                                        <p>correctorder</p>
+                                        <CorrectOrder modalQuestion={modalQuestion()} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion()} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
                                     </Match>
                                     <Match when={currentQuestionType() === "numberinput"}>
-                                        <p>numberinput</p>
-                                        <p>Test</p>
+                                        <NumberInput modalQuestion={modalQuestion()} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion()} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
                                     </Match>
                                     <Match when={currentQuestionType() === "gaptext"}>
-                                        <p>gaptext</p>
+                                        <GapText modalQuestion={modalQuestion()} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion()} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} />
                                     </Match>
                                 </Switch>
                             </div>
