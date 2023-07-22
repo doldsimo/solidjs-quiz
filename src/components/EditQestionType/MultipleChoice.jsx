@@ -22,7 +22,7 @@ function MultipleChoice(props) {
     }
 
     const handleQuestionOnchange = (e) => {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         let prevState = props.modalQuestion();
         prevState.question = e.target.value;
         let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated

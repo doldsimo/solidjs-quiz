@@ -164,7 +164,7 @@ function QuizEditor() {
                 </Match>
 
 
-                <Modal opened={isOpen()} onClose={onClose}>
+                <Modal opened={isOpen()} onClose={() => { onClose(); isEditing() === true ? setIsEditing(false) : setIsEditing(true) }}>
                     <ModalOverlay />
                     <ModalContent>
                         <ModalCloseButton />
