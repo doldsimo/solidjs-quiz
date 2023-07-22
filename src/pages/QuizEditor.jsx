@@ -87,17 +87,25 @@ function QuizEditor() {
     const saveAndCloseModal = () => {
         onClose();
         console.log(modalQuestion());
+        console.log(currentIndexQuestion());
         let newQuizData;
         // if quiz index -1 adding new question to the end of the questions array
-        if (currentIndexQuestion() === -1) {
-            if (isEditing()) {
-                newQuizData = quizData()
-                setIsEditing(false);
-            } else {
-                newQuizData = quizData().concat(modalQuestion());
-            }
-            setQuizData(newQuizData);
+        if (isEditing()) {
+            let newData = quizData();
+            console.log("newData: ", newData);
+            newData[currentIndexQuestion()] = modalQuestion();
+
+            newQuizData = [...newData];
+            console.log("newQuizData: ", newQuizData);
+
+            setIsEditing(false);
+        } else {
+            newQuizData = quizData().concat(modalQuestion());
         }
+        setQuizData(newQuizData);
+        // if (currentIndexQuestion() === -1) {
+
+        // }
     }
 
     const deleteQuizQuestion = (index) => {
@@ -107,6 +115,7 @@ function QuizEditor() {
     }
 
     const handleEditing = (item, index) => {
+        setCurrentIndexQuestion(index);
         setIsEditing(true);
         let getModalQuestion = quizData()[index];
         setModalQuestion(getModalQuestion);
