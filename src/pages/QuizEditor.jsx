@@ -185,7 +185,7 @@ function QuizEditor() {
                                         <MultipleChoice modalQuestion={modalQuestion} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} isEditing={isEditing} setIsEditing={setIsEditing} />
                                     </Match>
                                     <Match when={currentQuestionType() === "singlechoice"}>
-                                        <SingleChoice modalQuestion={modalQuestio} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} isEditing={isEditing} setIsEditing={setIsEditing} />
+                                        <SingleChoice modalQuestion={modalQuestion} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} isEditing={isEditing} setIsEditing={setIsEditing} />
                                     </Match>
                                     <Match when={currentQuestionType() === "correctorder"}>
                                         <CorrectOrder modalQuestion={modalQuestion} modalQuestionAnswers={modalQuestionAnswers()} setModalQuestion={setModalQuestion} currentQuestionType={currentQuestionType()} setCurrentQuestionType={setCurrentQuestionType} isEditing={isEditing} setIsEditing={setIsEditing} />

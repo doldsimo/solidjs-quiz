@@ -4,7 +4,6 @@ import { For } from "solid-js";
 
 function MultipleChoice(props) {
 
-
     const addNewAnswer = () => {
         let prevState = props.modalQuestion();
         let newAnswers = props.modalQuestion().answers.concat("");
