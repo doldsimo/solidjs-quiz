@@ -36,21 +36,15 @@ function QuizEditor() {
 
 
     const [modalQuestion, setModalQuestion] = createSignal({
-        "question": "What are new JSX components that solidjs has out of the box compared to React?",
+        "question": "",
         "questionType": "multiplechoice",
         "answers": [
-            "For",
-            "Index",
-            "All",
-            "Switch",
-            "Match"
+            "Option 1",
+            "Option 2",
         ],
         "correctAnswer": [
             true,
             true,
-            false,
-            true,
-            true
         ],
         "point": "10"
     });

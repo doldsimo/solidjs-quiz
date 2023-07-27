@@ -28,6 +28,34 @@ function MultipleChoice(props) {
         props.setModalQuestion(newState);
     }
 
+    const handleCorrectQuestionChange = (e) => {
+        console.log(e.target.value);
+        let prevState = props.modalQuestion();
+        console.log("Länge: ", props.modalQuestion().answers.length);
+        let answersArray = new Array(props.modalQuestion().answers.length).fill(false); // default all variables to false
+        const numbersArray = e.target.value.split(",").map(Number);
+
+        numbersArray.forEach((number) => {
+            if (number >= 0 && number < answersArray.length) {
+                answersArray[number] = true;
+            }
+        });
+        console.log(answersArray);
+
+        prevState.correctAnswer = answersArray;
+        let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        console.log(newState);
+        props.setModalQuestion(newState);
+    }
+
+    const handleChangePoints = (e) => {
+        console.log(e.target.value);
+        let prevState = props.modalQuestion();
+        prevState.point = e.target.value;
+        let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        props.setModalQuestion(newState);
+    }
+
     return (
         <>
 
@@ -65,7 +93,7 @@ function MultipleChoice(props) {
             </div>
             <div>
                 <Text style={{ margin: "1em" }}>Answer Options:</Text>
-                <For each={props.modalQuestion() !== null ? props.modalQuestion().answers : []}>
+                <For each={props.modalQuestion() !== null ? props.modalQuestion()?.answers : []}>
                     {(item, index) => (
                         <div style={{ display: "flex", margin: "1em" }}>
                             <Text style={{ margin: "auto", "margin-right": ".5em" }}>{index() + 1}</Text>
@@ -79,11 +107,11 @@ function MultipleChoice(props) {
             </div >
             <div>
                 <Text style={{ margin: "1em" }}>Numbers of correct answers, devide with comas:</Text>
-                <Input placeholder="Numbers devided by comas" value={props.modalQuestion() !== null ? props.modalQuestion().correctAnswer.map((item, index) => item === true && index + 1).filter(item => item !== false) : null} />
+                <Input placeholder="Numbers devided by comas" value={props.modalQuestion() !== null ? props.modalQuestion()?.correctAnswer.map((item, index) => item === true && index + 1).filter(item => item !== false) : null} onkeyup={(e) => handleCorrectQuestionChange(e)} />
             </div>
             <div>
                 <Text style={{ margin: "1em" }}>Points per correct answer:</Text>
-                <Input placeholder="Points" value={props.modalQuestion() !== null ? props.modalQuestion().point : ""} />
+                <Input placeholder="Points" value={props.modalQuestion() !== null ? props.modalQuestion().point : ""} onkeyup={(e) => handleChangePoints(e)} />
             </div>
 
         </>
