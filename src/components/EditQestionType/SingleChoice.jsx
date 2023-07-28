@@ -37,6 +37,33 @@ function SingleChoice(props) {
         props.setModalQuestion(newState);
     }
 
+    const handleOneQuestionAnserChange = (index, e) => {
+        console.log("change item: ", index, e.target.value)
+
+        let prevState = props.modalQuestion();
+        prevState.answers[index] = e.target.value;
+        // let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        // props.setModalQuestion(newState);
+    }
+
+    const handleCorrectAnswer = (e) => {
+        console.log(e.target.value);
+        let prevState = props.modalQuestion();
+        prevState.correctAnswer = e.target.value;
+        let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        // console.log(newState);
+        props.setModalQuestion(newState);
+
+    }
+
+    const handleChangePoints = (e) => {
+        // console.log(e.target.value);
+        let prevState = props.modalQuestion();
+        prevState.point = e.target.value;
+        let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        props.setModalQuestion(newState);
+    }
+
 
     return (
         <>
@@ -78,7 +105,9 @@ function SingleChoice(props) {
                     {(item, index) => (
                         <div style={{ display: "flex", margin: "1em" }}>
                             <Text style={{ margin: "auto", "margin-right": ".5em" }}>{index() + 1}</Text>
-                            <Input placeholder={index() + 1} size="md" value={item} />
+                            <InputGroup>
+                                <Input placeholder={index() + 1} size="md" value={item} onkeyup={(e) => handleOneQuestionAnserChange(index(), e)} />
+                            </InputGroup>
                             <IconButton colorScheme="danger" aria-label="Delete" onclick={() => deleteAnswer(index())} icon={<AiFillDelete />} />
                         </div>
                     )}
@@ -88,11 +117,11 @@ function SingleChoice(props) {
             </div >
             <div>
                 <Text style={{ margin: "1em" }}>Numbers of the correct answers: <br /><small>(Only one because of singele choice question)</small></Text>
-                <Input placeholder="Numbers devided by comas" value={props.modalQuestion() !== null ? props.modalQuestion().correctAnswer.map((item, index) => item === true && index + 1).filter(item => item !== false) : null} />
+                <Input placeholder="Numbers devided by comas" value={props.modalQuestion() !== null ? props.modalQuestion().correctAnswer : null} onkeyup={(e) => handleCorrectAnswer(e)} />
             </div>
             <div>
                 <Text style={{ margin: "1em" }}>Points per correct answer:</Text>
-                <Input placeholder="Points" value={props.modalQuestion() !== null ? props.modalQuestion().point : ""} />
+                <Input placeholder="Points" value={props.modalQuestion() !== null ? props.modalQuestion().point : ""} onkeyup={(e) => handleChangePoints(e)} />
             </div>
 
         </>
