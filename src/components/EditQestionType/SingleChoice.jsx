@@ -38,7 +38,7 @@ function SingleChoice(props) {
     }
 
     const handleOneQuestionAnserChange = (index, e) => {
-        console.log("change item: ", index, e.target.value)
+        // console.log("change item: ", index, e.target.value)
 
         let prevState = props.modalQuestion();
         prevState.answers[index] = e.target.value;
@@ -47,7 +47,7 @@ function SingleChoice(props) {
     }
 
     const handleCorrectAnswer = (e) => {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         let prevState = props.modalQuestion();
         prevState.correctAnswer = e.target.value;
         let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
@@ -116,7 +116,7 @@ function SingleChoice(props) {
                 <Button leftIcon={<AiOutlinePlus />} variant="outline" onclick={addNewAnswer}>Add answer</Button>
             </div >
             <div>
-                <Text style={{ margin: "1em" }}>Numbers of the correct answers: <br /><small>(Only one because of singele choice question)</small></Text>
+                <Text style={{ margin: "1em" }}><b>Index</b> of the correct answers: <br /><small>(Only one because of singele choice question)</small></Text>
                 <Input placeholder="Numbers devided by comas" value={props.modalQuestion() !== null ? props.modalQuestion().correctAnswer : null} onkeyup={(e) => handleCorrectAnswer(e)} />
             </div>
             <div>

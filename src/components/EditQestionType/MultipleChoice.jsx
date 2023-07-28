@@ -137,7 +137,7 @@ function MultipleChoice(props) {
             </div >
             <div>
                 <Text style={{ margin: "1em" }}>Numbers of correct answers, devide with comas:</Text>
-                <Input placeholder="Numbers devided by comas" value={props.modalQuestion() !== null ? props.modalQuestion()?.correctAnswer.map((item, index) => item === true && index + 1).filter(item => item !== false) : null} onkeyup={(e) => handleCorrectQuestionChange(e)} />
+                <Input placeholder="Numbers devided by comas" value={props.modalQuestion() !== null ? Array.isArray(props.modalQuestion()) ? props.modalQuestion()?.correctAnswer.map((item, index) => item === true && index + 1).filter(item => item !== false) : null : null} onkeyup={(e) => handleCorrectQuestionChange(e)} />
             </div>
             <div>
                 <Text style={{ margin: "1em" }}>Points per correct answer:</Text>
