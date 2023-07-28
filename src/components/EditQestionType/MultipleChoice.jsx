@@ -30,6 +30,7 @@ function MultipleChoice(props) {
 
     const handleQuestionTypeChange = (e) => {
         // console.log(e);
+        props.setCurrentQuestionType(e);
         let prevState = props.modalQuestion();
         prevState.questionType = e;
         let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
