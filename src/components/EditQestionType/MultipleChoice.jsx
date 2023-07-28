@@ -28,24 +28,36 @@ function MultipleChoice(props) {
         props.setModalQuestion(newState);
     }
 
-    const handleCorrectQuestionChange = (e) => {
-        console.log(e.target.value);
-        let prevState = props.modalQuestion();
-        console.log("Länge: ", props.modalQuestion().answers.length);
-        let answersArray = new Array(props.modalQuestion().answers.length).fill(false); // default all variables to false
-        const numbersArray = e.target.value.split(",").map(Number);
-
-        numbersArray.forEach((number) => {
-            if (number >= 0 && number < answersArray.length) {
-                answersArray[number] = true;
+    function setTrueValues(array1, array2) {
+        for (const index of array2) {
+            if (index >= 0 && index <= array1.length) {
+                array1[index - 1] = true;
             }
-        });
-        console.log(answersArray);
+        }
+    }
 
-        prevState.correctAnswer = answersArray;
-        let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
-        console.log(newState);
-        props.setModalQuestion(newState);
+    const handleCorrectQuestionChange = (e) => {
+        // console.log(e.target.value);
+        // console.log(e.target.value.length);
+        const lastCharacter = e.target.value.slice(-1);
+        console.log(lastCharacter);
+        if (e.target.value.length === 0 || lastCharacter === "," || lastCharacter === "0") {
+            console.log("no change");
+        } else {
+            let prevState = props.modalQuestion();
+            console.log("Länge: ", props.modalQuestion().answers.length);
+            let answersArray = new Array(props.modalQuestion().answers.length).fill(false); // default all variables to false
+            const numbersArray = e.target.value.split(",").map(Number);
+
+
+            setTrueValues(answersArray, numbersArray);
+            console.log(answersArray);
+
+            prevState.correctAnswer = answersArray;
+            let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+            console.log(newState);
+            props.setModalQuestion(newState);
+        }
     }
 
     const handleChangePoints = (e) => {
