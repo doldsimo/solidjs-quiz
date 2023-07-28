@@ -28,6 +28,14 @@ function SingleChoice(props) {
         props.setModalQuestion(newState);
     }
 
+    const handleQuestionTypeChange = (e) => {
+        // console.log(e.target.value);
+        let prevState = props.modalQuestion();
+        prevState.questionType = e;
+        let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        props.setModalQuestion(newState);
+    }
+
 
     return (
         <>
@@ -35,7 +43,7 @@ function SingleChoice(props) {
                 props.isEditing() ? null : <div style={{ display: "flex" }}>
                     <Text style={{ margin: "1em" }}>Questiontype:</Text>
                     <div style={{ width: "12em", margin: "1em" }}>
-                        <Select defaultValue={"multiplechoice"} value={props.currentQuestionType} onChange={(e) => props.setCurrentQuestionType(e)}>
+                        <Select defaultValue={"multiplechoice"} value={props.currentQuestionType} onChange={(e) => handleQuestionTypeChange(e)}>
                             <SelectTrigger>
                                 <SelectPlaceholder>Choose questiontype</SelectPlaceholder>
                                 <SelectValue />
@@ -45,7 +53,7 @@ function SingleChoice(props) {
                                 <SelectListbox>
                                     <For each={["multiplechoice", "singlechoice", "correctorder", "numberinput", "gaptext"]}>
                                         {item => (
-                                            <SelectOption value={item} >
+                                            <SelectOption value={item}>
                                                 <SelectOptionText>{item}</SelectOptionText>
                                                 <SelectOptionIndicator />
                                             </SelectOption>
@@ -78,7 +86,7 @@ function SingleChoice(props) {
                 <Button leftIcon={<AiOutlinePlus />} variant="outline" onclick={addNewAnswer}>Add answer</Button>
             </div >
             <div>
-                <Text style={{ margin: "1em" }}>Numbers of the correct answers: <br/><small>(Only one because of singele choice question)</small></Text>
+                <Text style={{ margin: "1em" }}>Numbers of the correct answers: <br /><small>(Only one because of singele choice question)</small></Text>
                 <Input placeholder="Numbers devided by comas" value={props.modalQuestion() !== null ? props.modalQuestion().correctAnswer.map((item, index) => item === true && index + 1).filter(item => item !== false) : null} />
             </div>
             <div>

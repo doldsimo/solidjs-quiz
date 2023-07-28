@@ -73,7 +73,13 @@ function QuizEditor() {
     }
 
     const addNewQuestion = () => {
+        // need that default is multiplechoice
         setCurrentQuestionType("multiplechoice");
+        let prevState = modalQuestion();
+        prevState.questionType = "multiplechoice";
+        let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        setModalQuestion(newState);
+
         onOpen();
     }
 
