@@ -75,6 +75,15 @@ function MultipleChoice(props) {
         props.setModalQuestion(newState);
     }
 
+    const handleOneQuestionAnserChange = (index, e) => {
+        console.log("change item: ", index, e.target.value)
+
+        let prevState = props.modalQuestion();
+        prevState.answers[index] = e.target.value;
+        // let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        // props.setModalQuestion(newState);
+    }
+
     return (
         <>
 
@@ -116,7 +125,9 @@ function MultipleChoice(props) {
                     {(item, index) => (
                         <div style={{ display: "flex", margin: "1em" }}>
                             <Text style={{ margin: "auto", "margin-right": ".5em" }}>{index() + 1}</Text>
-                            <Input placeholder={index() + 1} size="md" value={item} />
+                            <InputGroup>
+                                <Input placeholder={index() + 1} size="md" value={item} onkeyup={(e) => handleOneQuestionAnserChange(index(), e)} />
+                            </InputGroup>
                             <IconButton colorScheme="danger" aria-label="Delete" onclick={() => deleteAnswer(index())} icon={<AiFillDelete />} />
                         </div>
                     )}
