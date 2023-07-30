@@ -125,7 +125,7 @@ function QuizEditor() {
     }
 
     return (
-        <>
+        <div style={{"margin-bottom": "10em"}}>
             <br />
             <Center>
                 <Heading level={1} size={"3xl"}>Quiz editor</Heading>
@@ -173,6 +173,7 @@ function QuizEditor() {
                 </Match>
 
 
+
                 <Modal opened={isOpen()} onClose={() => { onClose(); isEditing() === true ? setIsEditing(false) : setIsEditing(true) }}>
                     <ModalOverlay />
                     <ModalContent>
@@ -204,12 +205,8 @@ function QuizEditor() {
                         </ModalFooter>
                     </ModalContent>
                 </Modal>
-            </Switch>
-
-
-
-
-        </>
+            </Switch >
+        </div>
     );
 }
 
