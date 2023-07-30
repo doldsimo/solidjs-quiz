@@ -107,18 +107,19 @@ function CorrectOrder(props) {
             const order = prevState.answers;
             const selectedOrder = prevState.correctAnswer
 
-            console.log("order", order);
-            console.log("selectedOrder", selectedOrder);
+            // console.log("order", order);
+            // console.log("selectedOrder", selectedOrder);
 
             // Finde die Indizes der Werte aus selectedOrder in der Reihenfolge von order
-            const indexes = selectedOrder.map((value) => order.indexOf(value) + 1);
-
-            // Erstelle einen String mit den Indizes
-            const indexesString = indexes.join(",");
-
-            console.log(indexesString);
-            setCorrectAnswersIndexs(indexesString);
-            return indexesString;
+            if (Array.isArray(selectedOrder)) {
+                const indexes = selectedOrder.map((value) => order.indexOf(value) + 1);
+                const indexesString = indexes.join(",");
+                setCorrectAnswersIndexs(indexesString);
+                // console.log(indexesString);
+                return indexesString;
+                
+            }
+            return "";
         }
     }
 
