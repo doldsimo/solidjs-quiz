@@ -143,7 +143,6 @@ function MultipleChoice(props) {
                 <Text style={{ margin: "1em" }}>Points per correct answer:</Text>
                 <Input placeholder="Points" value={props.modalQuestion() !== null ? props.modalQuestion().point : ""} onkeyup={(e) => handleChangePoints(e)} />
             </div>
-
         </>
     );
 
