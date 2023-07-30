@@ -4,66 +4,94 @@ import { For } from "solid-js";
 
 function NumberInput(props) {
 
-
-    const addNewAnswer = () => {
-        let newAnswers = props.modalQuestion.answers.concat("");
-        props.setModalQuestion(prevState => ({
-            ...prevState,
-            answers: newAnswers
-        }));
-    }
-
-    const deleteAnswer = (index) => {
-        console.log(index);
-        let newAnswers = props.modalQuestion.answers.filter((_, i) => i !== index);
-        console.log(newAnswers);
-        props.setModalQuestion(prevState => ({
-            ...prevState,
-            answers: newAnswers
-        }));
-    }
-
     const handleQuestionOnchange = (e) => {
-        console.log("change");
-        console.log(e.target.value);
+        // console.log(e.target.value);
+        let prevState = props.modalQuestion();
+        prevState.question = e.target.value;
+        let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        props.setModalQuestion(newState);
+    }
+
+    const handleQuestionTypeChange = (e) => {
+        // console.log(e.target.value);
+        props.setCurrentQuestionType(e);
+        let prevState = props.modalQuestion();
+        prevState.questionType = e;
+        let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        props.setModalQuestion(newState);
+    }
+
+    const handleOneQuestionAnswerChange = (index, e) => {
+        // console.log("change item: ", index, e.target.value)
+
+        let prevState = props.modalQuestion();
+        prevState.answers[index] = e.target.value;
+        // let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        // props.setModalQuestion(newState);
+    }
+
+    const handleCorrectAnswer = (e) => {
+        // console.log(e.target.value);
+        let prevState = props.modalQuestion();
+        prevState.correctAnswer = e.target.value;
+        let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        // console.log(newState);
+        props.setModalQuestion(newState);
 
     }
+
+    const handleChangePoints = (e) => {
+        // console.log(e.target.value);
+        let prevState = props.modalQuestion();
+        prevState.point = e.target.value;
+        let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        props.setModalQuestion(newState);
+    }
+
 
     return (
         <>
-
+            {
+                props.isEditing() ? null : <div style={{ display: "flex" }}>
+                    <Text style={{ margin: "1em" }}>Questiontype:</Text>
+                    <div style={{ width: "12em", margin: "1em" }}>
+                        <Select defaultValue={"multiplechoice"} value={props.currentQuestionType} onChange={(e) => handleQuestionTypeChange(e)}>
+                            <SelectTrigger>
+                                <SelectPlaceholder>Choose questiontype</SelectPlaceholder>
+                                <SelectValue />
+                                <SelectIcon />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectListbox>
+                                    <For each={["multiplechoice", "singlechoice", "correctorder", "numberinput", "gaptext"]}>
+                                        {item => (
+                                            <SelectOption value={item}>
+                                                <SelectOptionText>{item}</SelectOptionText>
+                                                <SelectOptionIndicator />
+                                            </SelectOption>
+                                        )}
+                                    </For>
+                                </SelectListbox>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                </div>
+            }
             <div style={{ display: "flex" }}>
-
-                <Text style={{ margin: "1em" }}>Questiontype:</Text>
-                <div style={{ width: "12em", margin: "1em" }}>
-                    <Select defaultValue={"bla"} value={props.currentQuestionType} onChange={(e) => props.setCurrentQuestionType(e)}>
-                        <SelectTrigger>
-                            <SelectPlaceholder>Choose questiontype</SelectPlaceholder>
-                            <SelectValue />
-                            <SelectIcon />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectListbox>
-                                <For each={["multiplechoice", "singlechoice", "correctorder", "numberinput", "gaptext"]}>
-                                    {item => (
-                                        <SelectOption value={item} >
-                                            <SelectOptionText>{item}</SelectOptionText>
-                                            <SelectOptionIndicator />
-                                        </SelectOption>
-                                    )}
-                                </For>
-                            </SelectListbox>
-                        </SelectContent>
-                    </Select>
-                </div>
-                <div style={{ display: "flex" }}>
-                    <Text style={{ margin: "1em" }}>Question:</Text>
-                    <InputGroup>
-                        <Input placeholder="Type your question..." value={props.modalQuestion !== null ? props.modalQuestion.question : ""} onChange={(e) => handleQuestionOnchange(e)} />
-                        <Input type="number" placeholder="Your answer (Number)" onChange={(e) => console.log(e)} />
-                    </InputGroup>
-                </div>
+                <Text style={{ margin: "1em" }}>Question:</Text>
+                <InputGroup>
+                    <Input onkeyup={(e) => handleQuestionOnchange(e)} placeholder="Type your question..." value={props.modalQuestion() !== null ? props.modalQuestion().question : ""} />
+                </InputGroup>
             </div>
+            <div>
+                <Text style={{ margin: "1em" }}><b>Number</b> of the correct answers:</Text>
+                <Input placeholder="Numbers devided by comas" value={props.modalQuestion() !== null ? props.modalQuestion().correctAnswer : null} onkeyup={(e) => handleCorrectAnswer(e)} />
+            </div>
+            <div>
+                <Text style={{ margin: "1em" }}>Points for correct answer:</Text>
+                <Input placeholder="Points" value={props.modalQuestion() !== null ? props.modalQuestion().point : ""} onkeyup={(e) => handleChangePoints(e)} />
+            </div>
+
         </>
     );
 
