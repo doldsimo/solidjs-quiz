@@ -55,7 +55,7 @@ function NumberInput(props) {
                 props.isEditing() ? null : <div style={{ display: "flex" }}>
                     <Text style={{ margin: "1em" }}>Questiontype:</Text>
                     <div style={{ width: "12em", margin: "1em" }}>
-                        <Select defaultValue={"multiplechoice"} value={props.currentQuestionType} onChange={(e) => handleQuestionTypeChange(e)}>
+                        <Select defaultValue={"numberinput"} value={props.currentQuestionType} onChange={(e) => handleQuestionTypeChange(e)}>
                             <SelectTrigger>
                                 <SelectPlaceholder>Choose questiontype</SelectPlaceholder>
                                 <SelectValue />
