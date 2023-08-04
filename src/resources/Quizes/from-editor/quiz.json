@@ -1,0 +1,70 @@
+{
+    "questions": [
+        {
+            "question": "MC",
+            "questionType": "multiplechoice",
+            "answers": [
+                "falsch",
+                "falsch",
+                "richtig",
+                "richtig",
+                "falsch"
+            ],
+            "correctAnswer": [
+                false,
+                false,
+                true,
+                true,
+                false
+            ],
+            "point": "10"
+        },
+        {
+            "question": "SC",
+            "questionType": "singlechoice",
+            "answers": [
+                "falsch",
+                "falsch",
+                "richitg",
+                "falsch"
+            ],
+            "correctAnswer": "2",
+            "point": "10"
+        },
+        {
+            "question": "CO",
+            "questionType": "correctorder",
+            "answers": [
+                "4",
+                "3",
+                "2",
+                "1"
+            ],
+            "correctAnswer": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ],
+            "point": "10"
+        },
+        {
+            "question": "NI 100",
+            "questionType": "numberinput",
+            "answers": [],
+            "correctAnswer": "100",
+            "point": "10"
+        },
+        {
+            "question": "quiz is named ***. which is made with ***. It was released ***.",
+            "questionType": "gaptext",
+            "correctAnswer": [
+                "solid-quiz",
+                "solidjs",
+                "2023"
+            ],
+            "answers": "100",
+            "point": "10"
+        }
+    ]
+}
