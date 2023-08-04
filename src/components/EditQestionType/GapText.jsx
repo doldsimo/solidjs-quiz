@@ -5,7 +5,7 @@ import { For } from "solid-js";
 function GapText(props) {
     const addNewAnswer = () => {
         let prevState = props.modalQuestion();
-        let newAnswers = props.modalQuestion().answers.concat("");
+        let newAnswers = prevState.answers.concat(prevState.answers == [] ? "" : prevState.answers[prevState.answers.length - 1]);
         prevState.answers = newAnswers;
         let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
         props.setModalQuestion(newState);

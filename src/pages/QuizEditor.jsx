@@ -58,10 +58,10 @@ function QuizEditor() {
         if (quizData().length === 0) {
             setCurrentQuestionType("multiplechoice");
         }
-        // let prevState = modalQuestion();
-        // prevState.questionType = "multiplechoice";
-        // let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
-        // setModalQuestion(newState);
+        let prevState = modalQuestion();
+        prevState.questionType = "multiplechoice";
+        let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        setModalQuestion(newState);
 
         onOpen();
     }
