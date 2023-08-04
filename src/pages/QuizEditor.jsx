@@ -125,9 +125,9 @@ function QuizEditor() {
     }
 
     return (
-        <div style={{"margin-bottom": "10em"}}>
+        <div>
             <br />
-            <Center>
+            <Center >
                 <Heading level={1} size={"3xl"}>Quiz editor</Heading>
                 <div style={{ margin: "1em" }}>
 
@@ -145,7 +145,7 @@ function QuizEditor() {
                 </Match>
                 <Match when={quizData().length !== 0}>
                     <Center>
-                        <div>
+                        <div style={{ "margin-bottom": "100px" }}>
                             <div>
                                 <For each={quizData()}>
                                     {(item, index) => (
@@ -205,7 +205,7 @@ function QuizEditor() {
                         </ModalFooter>
                     </ModalContent>
                 </Modal>
-            </Switch >
+            </Switch>
         </div>
     );
 }
