@@ -14,43 +14,19 @@ import GapText from "../components/EditQestionType/GapText";
 
 function QuizEditor() {
 
-    const [quizData, setQuizData] = createSignal([{
-        "question": "What are new JSX components that solidjs has out of the box compared to React?",
-        "questionType": "multiplechoice",
-        "answers": [
-            "For",
-            "Index",
-            "All",
-            "Switch",
-            "Match"
-        ],
-        "correctAnswer": [
-            true,
-            true,
-            false,
-            true,
-            true
-        ],
-        "point": "10"
-    }]);
+    const [quizData, setQuizData] = createSignal([]);
 
 
     const [modalQuestion, setModalQuestion] = createSignal({
         "question": "",
-        "questionType": "multiplechoice",
-        "answers": [
-            "Option 1",
-            "Option 2",
-        ],
-        "correctAnswer": [
-            true,
-            true,
-        ],
+        "questionType": "",
+        "answers": [],
+        "correctAnswer": [],
         "point": "10"
     });
     const [modalQuestionAnswers, setModalQuestionAnswers] = createSignal([]);
     const [isEditing, setIsEditing] = createSignal(false);
-    const [currentQuestionType, setCurrentQuestionType] = createSignal("multiplechoice");
+    const [currentQuestionType, setCurrentQuestionType] = createSignal("");
     const [currentIndexQuestion, setCurrentIndexQuestion] = createSignal(-1);
 
     const { isOpen, onOpen, onClose } = createDisclosure();
@@ -171,8 +147,6 @@ function QuizEditor() {
                         </div>
                     </Center>
                 </Match>
-
-
 
                 <Modal opened={isOpen()} onClose={() => { onClose(); isEditing() === true ? setIsEditing(false) : setIsEditing(true) }}>
                     <ModalOverlay />
