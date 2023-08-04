@@ -16,10 +16,14 @@ function QuizEditor() {
 
     const [quizData, setQuizData] = createSignal([]);
 
+    createEffect(() => {
+        console.log("From Effect: ", quizData());
+    });
+
 
     const [modalQuestion, setModalQuestion] = createSignal({
         "question": "",
-        "questionType": "",
+        "questionType": "multiplechoice",
         "answers": [],
         "correctAnswer": [],
         "point": "10"
@@ -50,11 +54,14 @@ function QuizEditor() {
 
     const addNewQuestion = () => {
         // need that default is multiplechoice
-        setCurrentQuestionType("multiplechoice");
-        let prevState = modalQuestion();
-        prevState.questionType = "multiplechoice";
-        let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
-        setModalQuestion(newState);
+        // console.log("before: ", quizData());
+        if (quizData().length === 0) {
+            setCurrentQuestionType("multiplechoice");
+        }
+        // let prevState = modalQuestion();
+        // prevState.questionType = "multiplechoice";
+        // let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
+        // setModalQuestion(newState);
 
         onOpen();
     }
@@ -76,12 +83,11 @@ function QuizEditor() {
 
             setIsEditing(false);
         } else {
-            newQuizData = quizData().concat(modalQuestion());
+            newQuizData = quizData().concat({ ...modalQuestion() });
         }
         setQuizData(newQuizData);
-        // if (currentIndexQuestion() === -1) {
         console.log("quizData:", quizData());
-        // }
+
     }
 
     const deleteQuizQuestion = (index) => {
@@ -96,7 +102,7 @@ function QuizEditor() {
         let getModalQuestion = quizData()[index];
         setModalQuestion(getModalQuestion);
 
-        setCurrentQuestionType(getModalQuestion.questionType);
+        // setCurrentQuestionType(getModalQuestion.questionType);
         onOpen();
     }
 
