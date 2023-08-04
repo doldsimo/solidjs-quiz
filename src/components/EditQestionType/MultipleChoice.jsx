@@ -79,6 +79,7 @@ function MultipleChoice(props) {
         console.log("change item: ", index, e.target.value)
 
         let prevState = props.modalQuestion();
+        
         prevState.answers[index] = e.target.value;
         // let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
         // props.setModalQuestion(newState);
@@ -86,7 +87,6 @@ function MultipleChoice(props) {
 
     return (
         <>
-
             {
                 props.isEditing() ? null : <div style={{ display: "flex" }}>
                     <Text style={{ margin: "1em" }}>Questiontype:</Text>
