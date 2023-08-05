@@ -20,7 +20,6 @@ function GapText(props) {
     }
 
     const handleQuestionOnchange = (e) => {
-        // console.log(e.target.value);
         let prevState = props.modalQuestion();
         prevState.question = e.target.value;
         let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
@@ -28,7 +27,6 @@ function GapText(props) {
     }
 
     const handleQuestionTypeChange = (e) => {
-        // console.log(e);
         props.setCurrentQuestionType(e);
         let prevState = props.modalQuestion();
         prevState.questionType = e;
@@ -45,23 +43,15 @@ function GapText(props) {
     }
 
     const handleCorrectQuestionChange = (e) => {
-        // console.log(e.target.value);
-        // console.log(e.target.value.length);
         const lastCharacter = e.target.value.slice(-1);
-        // console.log(lastCharacter);
         if (e.target.value.length === 0 || lastCharacter === "," || lastCharacter === "0") {
-            // console.log("no change");
         } else {
             let prevState = props.modalQuestion();
-            // console.log("Länge: ", props.modalQuestion().answers.length);
             let answersArray = new Array(props.modalQuestion().answers.length).fill(false); // default all variables to false
             const numbersArray = e.target.value.split(",").map(Number);
             setTrueValues(answersArray, numbersArray);
-            // console.log(answersArray);
-
             prevState.correctAnswer = answersArray;
             let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
-            // console.log(newState);
             props.setModalQuestion(newState);
         }
     }

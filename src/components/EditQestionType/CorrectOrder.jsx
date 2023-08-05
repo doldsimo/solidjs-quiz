@@ -22,7 +22,6 @@ function CorrectOrder(props) {
     }
 
     const handleQuestionOnchange = (e) => {
-        // console.log(e.target.value);
         let prevState = props.modalQuestion();
         prevState.question = e.target.value;
         let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
@@ -30,7 +29,6 @@ function CorrectOrder(props) {
     }
 
     const handleQuestionTypeChange = (e) => {
-        console.log("CorrectORder: ", e);
         props.setCurrentQuestionType(e);
         let prevState = props.modalQuestion();
         prevState.questionType = e;
@@ -47,16 +45,11 @@ function CorrectOrder(props) {
     }
 
     const handleCorrectQuestionChange = (e) => {
-        // console.log(e.target.value);
-        // console.log(e.target.value.length);
         const lastCharacter = e.target.value.slice(-1);
-        // console.log(lastCharacter);
         if (e.target.value.length === 0 || lastCharacter === "," || lastCharacter === "0") {
-            // console.log("no change");
         } else {
             // debugger;
             let prevState = props.modalQuestion();
-            // console.log("Länge: ", props.modalQuestion().answers.length);
             let answersArray = new Array(props.modalQuestion().answers.length).fill(""); // default all variables to false
             const numbersArray = e.target.value.split(",").map(Number);
             const allAnswers = props.modalQuestion().answers;
@@ -71,18 +64,13 @@ function CorrectOrder(props) {
                     return "";
                 }
             });
-
-            console.log(answersArray);
-
             prevState.correctAnswer = answersArray;
             let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
-            // console.log(newState);
             props.setModalQuestion(newState);
         }
     }
 
     const handleChangePoints = (e) => {
-        // console.log(e.target.value);
         let prevState = props.modalQuestion();
         prevState.point = e.target.value;
         let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
@@ -90,8 +78,6 @@ function CorrectOrder(props) {
     }
 
     const handleOneQuestionAnserChange = (index, e) => {
-        console.log("change item: ", index, e.target.value)
-
         let prevState = props.modalQuestion();
         prevState.answers[index] = e.target.value;
         // let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
@@ -106,16 +92,11 @@ function CorrectOrder(props) {
 
             const order = prevState.answers;
             const selectedOrder = prevState.correctAnswer
-
-            // console.log("order", order);
-            // console.log("selectedOrder", selectedOrder);
-
             // Finde die Indizes der Werte aus selectedOrder in der Reihenfolge von order
             if (Array.isArray(selectedOrder)) {
                 const indexes = selectedOrder.map((value) => order.indexOf(value) + 1);
                 const indexesString = indexes.join(",");
                 setCorrectAnswersIndexs(indexesString);
-                // console.log(indexesString);
                 return indexesString;
                 
             }

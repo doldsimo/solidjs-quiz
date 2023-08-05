@@ -2,7 +2,7 @@ import { Button, Center, Box, Heading, Text, Select, SelectTrigger, SelectPlaceh
 
 import { AiOutlineCloudDownload } from 'solid-icons/ai'
 import { AiOutlinePlus } from 'solid-icons/ai'
-import { For, Match, Show, Switch, createEffect, createSignal } from "solid-js";
+import { For, Match, Switch, createSignal } from "solid-js";
 
 import { AiOutlineInfoCircle, AiFillEdit, AiFillDelete } from 'solid-icons/ai'
 import MultipleChoice from "../components/EditQestionType/MultipleChoice";
@@ -15,11 +15,6 @@ import GapText from "../components/EditQestionType/GapText";
 function QuizEditor() {
 
     const [quizData, setQuizData] = createSignal([]);
-
-    createEffect(() => {
-        console.log("From Effect: ", quizData());
-    });
-
 
     const [modalQuestion, setModalQuestion] = createSignal({
         "question": "",
@@ -36,7 +31,7 @@ function QuizEditor() {
     const { isOpen, onOpen, onClose } = createDisclosure();
 
     const handleDownloadJSON = () => {
-        console.log("download JSON");
+        // console.log("download JSON");
         const exampleJSON = {
             // title: "Test",
             questions: quizData()
@@ -54,7 +49,6 @@ function QuizEditor() {
 
     const addNewQuestion = () => {
         // need that default is multiplechoice
-        // console.log("before: ", quizData());
         if (quizData().length === 0) {
             setCurrentQuestionType("multiplechoice");
         }
@@ -71,29 +65,22 @@ function QuizEditor() {
 
     const saveAndCloseModal = () => {
         onClose();
-        // console.log(modalQuestion());
-        // console.log(currentIndexQuestion());
         let newQuizData;
         // if quiz index -1 adding new question to the end of the questions array
         if (isEditing()) {
             let newData = quizData();
-            // console.log("newData: ", newData);
             newData[currentIndexQuestion()] = modalQuestion();
 
             newQuizData = [...newData];
-            console.log("newQuizData: ", newQuizData);
 
             setIsEditing(false);
         } else {
             newQuizData = quizData().concat({ ...modalQuestion() });
         }
         setQuizData(newQuizData);
-        console.log("quizData:", quizData());
-
     }
 
     const deleteQuizQuestion = (index) => {
-        console.log(index);
         let newQuestions = quizData().filter((_, i) => i !== index);
         setQuizData(newQuestions);
     }

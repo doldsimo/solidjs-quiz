@@ -29,7 +29,7 @@ function MultipleChoice(props) {
     }
 
     const handleQuestionTypeChange = (e) => {
-        console.log("Multple choice", e);
+        // console.log("Multple choice", e);
         props.setCurrentQuestionType(e);
         let prevState = props.modalQuestion();
         prevState.questionType = e;
