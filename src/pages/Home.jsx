@@ -5,11 +5,11 @@ import { FaBrandsNpm } from 'solid-icons/fa'
 import { useNavigate } from "@solidjs/router"
 
 function Home() {
-
     const navigate = useNavigate();
+
     return (
         <>
-            <Container>
+            <Container maxWidth={1000} style={{padding: "1em"}}>
                 <Heading level={1} size={"3xl"}>Solid-Quiz Sample Application</Heading>
                 <br />
                 <Text>
