@@ -25,7 +25,7 @@ const config = {
 function App() {
   return (
     <HopeProvider config={config}>
-      <Router>
+      <Router base='solid-quiz'>
         <DarkModeButton />
         {/* <Heading>My Site with Lots of Pages</Heading> */}
         <br />
