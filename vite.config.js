@@ -8,5 +8,6 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
+    outDir: 'build', // setting build output to "build" instead of dist (vor deploying with gh-pages)
   },
 });
