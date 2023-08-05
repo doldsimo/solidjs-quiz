@@ -7,10 +7,8 @@ function DarkModeButton() {
   const { colorMode, toggleColorMode } = useColorMode()
 
   return (
-    <div class={styles.container}>
-      <Switch onChange={toggleColorMode} defaultChecked={colorMode() === 'dark'}  >
-        {colorMode() === 'light' ? <BsLightbulbFill /> : <BsLightbulbOffFill />}
-      </Switch>
+    <div class={styles.container} style={{ cursor: "pointer" }}>
+      {colorMode() === 'light' ? <BsLightbulbFill onClick={toggleColorMode} /> : <BsLightbulbOffFill onClick={toggleColorMode} />}
     </div>
   )
 }
