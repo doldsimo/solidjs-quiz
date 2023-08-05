@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
 
 export default defineConfig({
-  base: "/solidjs-quiz/",
+  base: "/solidjs-quiz/", // comment out for local develompment
   plugins: [solidPlugin()],
   server: {
     port: 3000,

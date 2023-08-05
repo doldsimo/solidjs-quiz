@@ -1,10 +1,12 @@
 import { Container, Heading, Text, UnorderedList, ListItem } from "@hope-ui/solid";
+import { Navigate } from "@solidjs/router";
 import { AiFillGithub } from 'solid-icons/ai'
 import { FaBrandsNpm } from 'solid-icons/fa'
+import { useNavigate } from "@solidjs/router"
 
 function Home() {
 
-
+    const navigate = useNavigate();
     return (
         <>
             <Container>
@@ -16,8 +18,8 @@ function Home() {
                     <br />
                     <br />
                     <UnorderedList>
-                        <ListItem>A sample quiz can be carried out on the <a style={{ color: "#5e82f7" }} href="/quiz">quiz page</a> of this application.</ListItem>
-                        <ListItem> Under the <a style={{ color: "#5e82f7" }} href="/editor">editor page</a>, a quiz editor can be used to easily create your own quiz data, which you can then use in your projects. Output is a JSON based Quiz which fits the correct quiz format for solid-quiz library.</ListItem>
+                        <ListItem>A sample quiz can be carried out on the <strong onClick={() => navigate("/quiz")} style={{ color: "#5e82f7", cursor: "pointer" }}> quiz page</strong> of this application.</ListItem>
+                        <ListItem> Under the <strong onClick={() => navigate("/editor")} style={{ color: "#5e82f7", cursor: "pointer" }}> editor page</strong>, a quiz editor can be used to easily create your own quiz data, which you can then use in your projects. Output is a JSON based Quiz which fits the correct quiz format for solid-quiz library.</ListItem>
                     </UnorderedList>
                     <br />
                     Try <a style={{ color: "#5e82f7" }} target="_blank" href="https://www.npmjs.com/package/solid-quiz">solid-quiz</a> out:
