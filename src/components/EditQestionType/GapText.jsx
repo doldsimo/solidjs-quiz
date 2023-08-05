@@ -57,7 +57,6 @@ function GapText(props) {
     }
 
     const handleChangePoints = (e) => {
-        // console.log(e.target.value);
         let prevState = props.modalQuestion();
         prevState.point = e.target.value;
         let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
@@ -65,8 +64,6 @@ function GapText(props) {
     }
 
     const handleOneQuestionAnserChange = (index, e) => {
-        console.log("change item: ", index, e.target.value)
-
         let prevState = props.modalQuestion();
         prevState.correctAnswer[index] = e.target.value;
         // let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated

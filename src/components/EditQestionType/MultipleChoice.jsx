@@ -21,7 +21,6 @@ function MultipleChoice(props) {
     }
 
     const handleQuestionOnchange = (e) => {
-        // console.log(e.target.value);
         let prevState = props.modalQuestion();
         prevState.question = e.target.value;
         let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
@@ -29,7 +28,6 @@ function MultipleChoice(props) {
     }
 
     const handleQuestionTypeChange = (e) => {
-        // console.log("Multple choice", e);
         props.setCurrentQuestionType(e);
         let prevState = props.modalQuestion();
         prevState.questionType = e;
@@ -46,29 +44,21 @@ function MultipleChoice(props) {
     }
 
     const handleCorrectQuestionChange = (e) => {
-        // console.log(e.target.value);
-        // console.log(e.target.value.length);
         const lastCharacter = e.target.value.slice(-1);
-        // console.log(lastCharacter);
         if (e.target.value.length === 0 || lastCharacter === "," || lastCharacter === "0") {
-            // console.log("no change");
         } else {
             let prevState = props.modalQuestion();
-            // console.log("Länge: ", props.modalQuestion().answers.length);
             let answersArray = new Array(props.modalQuestion().answers.length).fill(false); // default all variables to false
             const numbersArray = e.target.value.split(",").map(Number);
             setTrueValues(answersArray, numbersArray);
-            // console.log(answersArray);
 
             prevState.correctAnswer = answersArray;
             let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
-            // console.log(newState);
             props.setModalQuestion(newState);
         }
     }
 
     const handleChangePoints = (e) => {
-        // console.log(e.target.value);
         let prevState = props.modalQuestion();
         prevState.point = e.target.value;
         let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
@@ -76,10 +66,7 @@ function MultipleChoice(props) {
     }
 
     const handleOneQuestionAnserChange = (index, e) => {
-        console.log("change item: ", index, e.target.value)
-
         let prevState = props.modalQuestion();
-        
         prevState.answers[index] = e.target.value;
         // let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
         // props.setModalQuestion(newState);

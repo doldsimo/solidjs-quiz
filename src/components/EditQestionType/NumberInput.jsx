@@ -5,7 +5,6 @@ import { For } from "solid-js";
 function NumberInput(props) {
 
     const handleQuestionOnchange = (e) => {
-        // console.log(e.target.value);
         let prevState = props.modalQuestion();
         prevState.question = e.target.value;
         let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
@@ -13,7 +12,6 @@ function NumberInput(props) {
     }
 
     const handleQuestionTypeChange = (e) => {
-        // console.log(e.target.value);
         props.setCurrentQuestionType(e);
         let prevState = props.modalQuestion();
         prevState.questionType = e;
@@ -22,8 +20,6 @@ function NumberInput(props) {
     }
 
     const handleOneQuestionAnswerChange = (index, e) => {
-        // console.log("change item: ", index, e.target.value)
-
         let prevState = props.modalQuestion();
         prevState.answers[index] = e.target.value;
         // let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
@@ -31,17 +27,14 @@ function NumberInput(props) {
     }
 
     const handleCorrectAnswer = (e) => {
-        // console.log(e.target.value);
         let prevState = props.modalQuestion();
         prevState.correctAnswer = e.target.value;
         let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
-        // console.log(newState);
         props.setModalQuestion(newState);
 
     }
 
     const handleChangePoints = (e) => {
-        // console.log(e.target.value);
         let prevState = props.modalQuestion();
         prevState.point = e.target.value;
         let newState = { ...prevState } //For reload, else its the safe reference so UI will not be updated
