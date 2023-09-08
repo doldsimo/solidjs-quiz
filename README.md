@@ -1,6 +1,6 @@
 # Solidjs app example with solid-quiz library
 
-[Live demo](https://doldsimo.github.io/solidjs-quiz/home)
+[Live demo](https://doldsimo.github.io/solidjs-quiz)
 
 > Example application that shows how [solid-quiz](https://github.com/doldsimo/solid-quiz) can be used in [solidjs]([https://start.solidjs.com/getting-started/what-is-solidstart](https://www.solidjs.com/)).
 
