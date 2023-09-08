@@ -1,34 +1,16 @@
-## Usage
+# Solidjs app example with solid-quiz library
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+> Example application that shows how [solid-quiz](https://github.com/doldsimo/solid-quiz) can be used in [solidjs]([https://start.solidjs.com/getting-started/what-is-solidstart](https://www.solidjs.com/)).
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+> Requirements: Nodejs (npm)
 
-```bash
-$ npm install # or pnpm install or yarn install
-```
+## Installation
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+1. Clone the repository
+2. Install all packages with `npm install`
+3. Start the development server with `npm start`
+5. Test the example on `http://127.0.0.1:3000/`
 
-## Available Scripts
+## Need Help?
 
-In the project directory, you can run:
-
-### `npm dev` or `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-
-### `npm run build`
-
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## Deployment
-
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+If you have a problem with the library, [create a new issue](https://github.com/doldsimo/solidjs-quiz/issues/new).
